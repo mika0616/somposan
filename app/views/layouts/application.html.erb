@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="headder-logo-box"></div>
+          <div class="headder-serch-form"></div>
+          <div class="headder-login-button-wrap"></div>
+          <div class="headder-signup-button-wrap"></div>
+          <!-- 未ログインの場合はアバウトセクションが表示される -->
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer>
+      
+    </footer>
   </body>
 </html>

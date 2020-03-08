@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+/*bootstrapの呼び出し*/
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+/*fontawasomeの呼び出し*/
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+/*リセット*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

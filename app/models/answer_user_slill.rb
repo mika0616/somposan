@@ -1,0 +1,2 @@
+class AnswerUserSlill < ApplicationRecord
+end

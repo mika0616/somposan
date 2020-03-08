@@ -1,0 +1,2 @@
+class SoluutionReport < ApplicationRecord
+end

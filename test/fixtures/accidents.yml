@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question_user_id: 1
+  question_id: 1
+  status: false
+  title: MyText
+  bodu: MyText
+  situation_img_id: MyString
+  question_user_damage: MyText
+  the_other_damage: MyText
+
+two:
+  question_user_id: 1
+  question_id: 1
+  status: false
+  title: MyText
+  bodu: MyText
+  situation_img_id: MyString
+  question_user_damage: MyText
+  the_other_damage: MyText
