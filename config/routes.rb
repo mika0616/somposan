@@ -2,16 +2,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 # rooting
-get 'homes#top'
+root 'homes#top'
 
   # homes
-  get 'homes/top'
-  get 'homes/before_login'
-  get 'homes/before_signup'
-  get 'homes/about'
-  get 'homes/about_score'
-  get 'homes/about_level'
-  get 'homes/guide'
+  get 'homes/top' => 'homes#top'
+  get 'homes/before_login' => 'homes#before_login'
+  get 'homes/before_signup' => 'homes#before_signup'
+  get 'homes/about' => 'homes#about'
+  get 'homes/about_score' => 'homes#about_score'
+  get 'homes/about_level' => 'homes#about_level'
+  get 'homes/guide' => 'homes#guide'
 
   # accidents
   resources :accidents, except: [:index]
@@ -19,7 +19,7 @@ get 'homes#top'
   # questions
   resources :questions, except: [:index] do
   	member do
-  		get 'serch'
+  		get 'questions/serch' => 'questions#serch'
   	end
   end
 
@@ -29,7 +29,7 @@ get 'homes#top'
   # solution_reports
   resources :solution_reports, except: [:index, :show] do
   	member do
-  		get 'solve'
+  		get 'solution_reports/solve' => 'solution_reports#solve'
   	end
   end
 
@@ -40,9 +40,9 @@ get 'homes#top'
   resources :question_users,except: [:index, :new, :create, :destroy]
 
   # best_answers
-  resources :bext_answers, only: [:create] do
+  resources :best_answers, only: [:create] do
   	member do
-  		get 'confirm'
+  		get 'best_answers/confirm' => 'best_answers#confirm'
   	end
   end
 

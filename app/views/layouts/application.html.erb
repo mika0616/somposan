@@ -12,13 +12,54 @@
   <body>
     <header>
       <div class="container-fluid">
-        <div class="row">
-          <div class="headder-logo-box"></div>
+        <!-- ヘッダーバー -->
+        <div class="header-bar row">
+          <%= link_to root_path do %>
+            <div class="header-logo-box"></div>
+          <% end %>
+          <!-- 検索ボックス -->
           <div class="headder-serch-form"></div>
-          <div class="headder-login-button-wrap"></div>
-          <div class="headder-signup-button-wrap"></div>
-          <!-- 未ログインの場合はアバウトセクションが表示される -->
+          <!-- ログイン済みの場合はユーザー名が表示される -->
+          
+          
+          
+            <div class="header-button-group">
+              <span class="header-login-button-wrap">ログイン</span>
+              <span class="header-signup-button-wrap">利用登録</span>
+            </div>
+            
         </div>
+        <!-- アバウトセクション（未ログインの場合）-->
+        
+          <section class="header-about-section row">
+            <div class="header-about-box col-md-7">
+              <div>
+                <h3>事故のお悩み持ち寄り相談</h3>
+                <h1>みんなのそんぽさん</h1>
+                <h2>
+                  損害保険社員が参加する交通事故相談特化型のQAサイト
+                </h2>
+                <p>
+                  事故の困り事を投稿すれば、
+                  会社の垣根を越えて損保社員が交通事故の相談にお答えします。
+                </p>
+                <p>>><%= link_to "詳しく見る", homes_about_path %></p>
+                <p>質問数　　件</p>
+                <p>アンサー数　件</p>
+                <p>現在の回答率　％</p>
+              </div>
+            </div>
+            <div class="header-signup-box col-md-5">
+              <div>
+                <%= link_to "損保社員として示談交渉経験者はこちら", homes_before_login_path, class:"btn btn-success" %>
+                <p>回答ができます</p>
+                <%= link_to "交通事故でお困りの方はこちら", homes_before_signup_path, class:"btn btn-success" %>
+                <p>質問ができます</p>
+                <p>アカウントをお持ちの方</p>
+              </div>
+            </div>
+          </section>
+          
       </div>
     </header>
     <div class="container">
@@ -29,7 +70,22 @@
       </div>
     </div>
     <footer>
-      
+      <div class="container-fluid">
+        <div class="footer-wrap row">
+          <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+            <h2>みんなのそんぽさん</h2>
+            <p>損害保険社員が参加する交通事故相談特化型のQAサイト</p>
+            <p>© みんなのそんぽさん All rights reserved.</p>
+          </div>
+          <div>
+            <p>アバウト</p>
+            <p>ご利用ガイド</p>
+            <p>利用規約</p>
+            <p>スコアについて</p>
+            <p>レベルについて</p>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
