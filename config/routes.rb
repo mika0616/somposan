@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # rooting
+  root 'homes#top'
 
-# rooting
-root 'homes#top'
+  # devise
+  devise_for :answer_users, controllers: {
+    sessions: "answer_users/devise/sessions",
+    passwords: "answer_users/devise/passwords",
+    registrations: "answer_users/devise/registrations"
+  }
+
+  devise_for :question_users, controllers: {
+    sessions: "question_users/devise/sessions",
+    passwords: "question_users/devise/passwords",
+    registrations: "question_users/devise/registrations"
+  }
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # homes
   get 'homes/top' => 'homes#top'
