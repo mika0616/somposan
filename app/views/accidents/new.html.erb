@@ -1,0 +1,59 @@
+<div class="new-accident-view">
+	<%= form_for(@accident, url: accidents_path) do |f| %>
+	<div class="input-section">
+		<div class="input-text-section">
+			<!-- 概要 -->
+			<div class="acciident-form">
+				<%= f.text_area :title, class:"form-control", rows:"3", placeholder: "事故概要&#13;&#10;&#13;&#10;後ろからの追突被害事故".html_safe %>
+			</div>
+			<!-- 詳細 -->
+			<div class="acciident-form">
+				<%= f.text_area :body, class:"form-control", rows:"20", id:"InputTextarea", placeholder: "事故詳細&#13;&#10;&#13;&#10;直線の道路で信号が赤になったためゆっくりと止まったところ後ろから乗用車に追突された。".html_safe %>
+			</div class="acciident-form">
+			<!-- 質問者被害 -->
+			<div class="acciident-form">
+				<%= f.text_area :question_user_damage, class:"form-control", rows:"10", id:"InputTextarea", placeholder:"質問者被害&#13;&#10;&#13;&#10;[車種名]の後ろのバンパーのナンバーの上あたりに３０センチほどのへこみ".html_safe %>
+			</div class="acciident-form">
+			<!-- 相手被害 -->
+			<div class="acciident-form">
+				<%= f.text_area :the_other_damage, class:"form-control", rows:"10", id:"InputTextarea", placeholder:"相手被害&#13;&#10;&#13;&#10;[車種名]の前のバンパー中央とナンバープレートに２０センチ程のへこみ".html_safe %>
+			</div>
+		</div>
+		<div class="input-img-section">
+			<!-- 状況図 -->
+
+			<div><%= f.attachment_field :situation_img, style: "display:none;", id: "file" %></div>
+			<div class="imput-img-label"><%= f.label :situation_img, "事故状況図をアップロード", class:"control-label" %></div>
+			<div class="input-img-form">
+				<div class="img-field" id="situation-img" onClick="$('#file').click()">
+					<div class="input-img-icon"><i class="far fa-image"></i></div>
+					<div><%=  image_tag 'no-img.jpg', class:"file-preview", id: "file-preview", :size => '300x300' %></div>
+				</div>
+			</div>
+
+			<div class="input-img-guide">
+				<p>
+					事故状況図があると事故の状況がよくわかり、<br>
+					回答者が回答しやすくなります。<br>
+					事故状況図は下記の例を参考にしてみましょう。<br>
+				</p>
+				<p>
+					わかりやすい状況図を書くために<br>
+					・道路状況（センターラインの有無/停止線の有無等）<br>
+					・接触前、接触時、接触後の車の動き<br>
+				</p>
+				<p class="text-right">
+					>>詳しく書き方を知りたい方はこちら
+				</p>
+			</div>
+
+		</div>
+	</div>
+	<div>
+		<!-- 登録 -->
+		<div class="accident-submit-btn-wrap">
+			<%= f.submit "質問登録へ進む>>", class:"btn btn-primary" %>
+		</div>
+	</div>
+	<% end %>
+</div>
