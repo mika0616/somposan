@@ -1,4 +1,16 @@
 <div class="new-accident-view">
+	<!-- エラーメッセージ -->
+	<% if @accident.errors.any? %>
+		<div class="alert alert-danger" role="alert">
+			<strong>エラー</strong>
+			<ul>
+				<% @accident.errors.full_messages do |message| %>
+				<li><p><%= message %></p></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<!-- /エラーメッセージ -->
 	<%= form_for(@accident, url: accidents_path) do |f| %>
 	<div class="input-section">
 		<div class="input-text-section">

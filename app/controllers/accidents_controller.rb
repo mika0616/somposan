@@ -4,7 +4,7 @@ class AccidentsController < ApplicationController
 	end
 
 	def create
-		@accident = Accident.new(accident_params)
+		@accident = current_question_user.accidents.new(accident_params)
 		if @accident.save
 			redirect_to new_question_path
 		else
