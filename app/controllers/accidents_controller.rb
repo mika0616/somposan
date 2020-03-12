@@ -1,10 +1,15 @@
 class AccidentsController < ApplicationController
 	def new
-		
+		@accident = Accident.new
 	end
 
 	def create
-		
+		@accident = current_question_user.accidents.new(accident_params)
+		if @accident.save
+			redirect_to new_question_path
+		else
+			render action: :new
+		end
 	end
 
 	def edit
@@ -21,5 +26,10 @@ class AccidentsController < ApplicationController
 
 	def destroy
 		
+	end
+
+	private
+	def accident_params
+		params.require(:accident).permit(:title, :body, :situation_img, :question_user_damage, :the_other_damage)
 	end
 end

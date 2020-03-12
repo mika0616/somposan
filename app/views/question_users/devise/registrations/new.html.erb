@@ -1,0 +1,47 @@
+<h2 class="view-title">利用登録</h2>
+<div class="resistration-view row">
+  <div class="registration-guide-section col-md-5">
+    <div>
+      <p>
+        利用登録をすると質問ができるようになります。<br>
+        登録後、「質問をする」から質問してみましょう！
+      </p>
+    </div>
+  </div>
+
+  <div class="registration-form-section col-md-7">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "question_users/devise/shared/error_messages", resource: resource %>
+
+    <div class="field row">
+    <%= f.label :name, "アカウント名", class:"col-xs-4 control-label" %>
+    <div class="col-xs-8"><%= f.text_field :name, autofocus: true, autocomplete: "アカウント名", class:"form-control" %></div>
+    </div>
+
+    <div class="field row">
+      <%= f.label :email, "メールアドレス", class:"col-xs-4 control-label" %>
+      <div class="col-xs-8"><%= f.email_field :email, autocomplete: "メールアドレス", class:"form-control" %></div>
+    </div>
+
+    <div class="field row">
+      <%= f.label :password, "パスワード", class:"col-xs-4 control-label" %>
+      <div class="col-xs-8"><%= f.password_field :password, autocomplete: "パスワード", class:"form-control" %></div>
+    </div>
+
+    <div class="field row">
+      <%= f.label :password_confirmation, "パスワード（確認）", class:"col-xs-4 control-label" %>
+      <div class="col-xs-8"><%= f.password_field :password_confirmation, autocomplete: "パスワード（確認）", class:"form-control" %></div>
+    </div>
+
+    <div>
+      <p>利用規約及びプライバシーに関する要綱を確認の上、同意いただける場合は下記の「同意して登録する」ボタンをクリックしてください。</p>
+      <p class="login-map"><%= link_to homes_before_login_path do %>アカウントをお持ちの方はこちら<% end %></p>
+    </div>
+    <div class="resistration-actions">
+      <%= f.submit "同意して登録する", class:"btn btn-primary" %>
+    </div>
+  <% end %>
+  </div>
+
+</div>
+
