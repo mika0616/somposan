@@ -72,7 +72,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加全体gem
-gem 'devise'
+
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -81,3 +81,4 @@ gem 'kaminari'
 gem 'font-awesome-sass'
 gem 'ransack'
 gem 'impressionist'
+gem 'devise'

@@ -1,3 +1,27 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-question-view{
+	margin: 80px 0;
+	.question-guide{
+		text-align: center;
+		border-bottom: solid #bfbfbf 1px;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+	.question-form{
+		margin-bottom: 10px;
+	}
+	.question-tag-section{
+		text-align: center;
+		.tag-guide{
+			border-bottom: solid #bfbfbf 1px;
+			font-size: 20px;
+		}
+	}
+	.question-submit-btn-wrap{
+		margin-top: 30px;
+		text-align: center;
+	}
+}
