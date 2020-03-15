@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QuestionUser::Devise::UnlocksController < Devise::UnlocksController
+class QuestionUsers::Devise::UnlocksController < Devise::UnlocksController
   # GET /resource/unlock/new
   # def new
   #   super
