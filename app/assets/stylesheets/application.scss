@@ -29,6 +29,13 @@
   box-sizing: border-box;
 }
 
+// リンク
+.link-tag{
+	text-decoration: none !important;
+	cursor: pointer;
+	color: black;
+}
+
 /*ヘッダー*/
 .header-bar{
 	display: flex;
@@ -44,9 +51,31 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
+	.headder-serch-form{
+		display: flex;
+		font-size: 40px;
+		color: #32c5f0;
+		margin-right: 10px;
+		padding: 5px;
+		background-color: white;
+		border-radius: 5px;
+		.serch-form{
+			width: 200px;
+			border-right: solid 2px;
+			margin-right: 10px;
+		}
+	}
 	.header-button-group{
 		display: flex;
 		align-items: center;
+		span{
+			font-size: 40px;
+			color: #32c5f0;
+			margin-right: 10px;
+			padding: 5px;
+			background-color: white;
+			border-radius: 5px;
+		}
 		.header-login-button-wrap{
 			border: solid white 1px;
 			border-radius: 3px;
@@ -83,6 +112,11 @@
 		background-color: rgba(0, 0, 0, 0.5);
 		color: white;
 	}
+}
+
+// サクセスメッセージ
+.success-message{
+	margin-top: 30px;
 }
 
 // サインアップ
@@ -127,6 +161,11 @@
 	.field{
 		margin-bottom: 10px;
 	}
+}
+
+// ボディー背景色
+body{
+	background-color: #efefef;
 }
 
 

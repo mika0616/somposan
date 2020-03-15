@@ -1,7 +1,8 @@
 class Accident < ApplicationRecord
 	attachment :situation_img
-	
+
 	# アソシエーション
+	has_many :questions, dependent: :destroy
 	has_one :solution_report, dependent: :destroy
 	belongs_to :question_user
 
@@ -10,4 +11,8 @@ class Accident < ApplicationRecord
 		validates :title
 		validates :body
 	end
+
+	# ステータス
+	enum status: {"対応中": false, "解決済み": true}
+
 end

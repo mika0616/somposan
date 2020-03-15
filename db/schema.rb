@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_03_11_102250) do
+ActiveRecord::Schema.define(version: 2020_03_12_172241) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -22,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_03_11_102250) do
 
   create_table "accidents", force: :cascade do |t|
     t.integer "question_user_id", null: false
-    t.integer "question_id"
     t.boolean "status", default: false, null: false
     t.text "title", null: false
     t.text "body", null: false
@@ -107,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_102250) do
     t.integer "access_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "accident_id"
   end
 
   create_table "skills", force: :cascade do |t|

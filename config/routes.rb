@@ -26,13 +26,12 @@ Rails.application.routes.draw do
   get 'homes/guide' => 'homes#guide'
 
   # accidents
-  resources :accidents, except: [:index]
-
-  # questions
-  resources :questions, except: [:index] do
-  	member do
-  		get 'questions/serch' => 'questions#serch'
-  	end
+  resources :accidents, except: [:index] do
+    resources :questions, except: [:index] do
+      member do
+        get 'questions/serch' => 'questions#serch'
+      end
+    end
   end
 
   # answers

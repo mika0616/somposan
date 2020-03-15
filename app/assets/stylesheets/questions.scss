@@ -2,8 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//new
 .new-question-view{
-	margin: 80px 0;
+	margin: 30px 0;
 	.question-guide{
 		text-align: center;
 		border-bottom: solid #bfbfbf 1px;
@@ -25,3 +26,126 @@
 		text-align: center;
 	}
 }
+
+// edit
+.edit-question-view{
+	margin: 30px 0;
+	.edit-question-form-section{
+		padding: 30px;
+		background-color: white;
+		.question-guide{
+				text-align: center;
+				border-bottom: solid #bfbfbf 1px;
+				font-size: 20px;
+				margin-bottom: 10px;
+		}
+		.question-form{
+			margin-bottom: 10px;
+		}
+		.question-tag-section{
+			text-align: center;
+			.tag-guide{
+				border-bottom: solid #bfbfbf 1px;
+				font-size: 20px;
+			}
+		}
+		.question-submit-btn-wrap{
+			margin-top: 30px;
+			text-align: center;
+		}
+		.edit-accident-link-btn-wrap{
+			margin-top: 30px;
+			text-align: center;
+		}
+	}
+}
+
+// show
+.question-view{
+	margin: 30px 0;
+	.question-section{
+		padding: 30px;
+		background-color: white;
+		.question-info{
+			margin: 10px 0;
+			.question-question-user-name{
+				font-weight: bold;
+			}
+			.question-question-created-at{
+				margin-left: 10px;
+			}
+		}
+		.question-headline{
+			.question-question-status-false, .question-question-status-true{
+				font-size: 20px;
+			}
+			.question-title{
+				display: flex;
+				justify-content: flex-end;
+				h2{
+					font-weight: bold;
+				}
+				.question-edit-link{
+					font-size: 50px;
+					color: #32c5f0;
+					.question-edit-link-icon{
+						line-height: 100%;
+					}
+				}
+			}
+		}
+		.question-body{
+			margin: 30px 0;
+		}
+		.accident-link{
+			.accident-img{
+				padding: 10px;
+			}
+			.accident-link-title{
+				border-bottom: 1px solid #dfdfdf;
+			}
+			.accident-link-box{
+				margin-top: 30px;
+				display: flex;
+				justify-content: center;
+				color: black;
+				h4{
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.answer-form-section{
+		padding: 30px;
+		margin-top: 15px;
+		background-color: white;
+		h3{
+			margin-top: 0;
+			font-weight: bold;
+		}
+		.answer-submit-btn-wrap{
+			margin-top: 10px;
+		}
+	}
+	.answers-section{
+		padding: 30px;
+		margin-top: 15px;
+		background-color: white;
+		.answers-count{
+			h2{
+				margin-top: 0;
+				border-bottom: 1px solid #dfdfdf;
+			}
+		}
+	}
+}
+
+.question-title > :first-child{
+	margin-right: auto;
+}
+
+.accident-link-box:hover{
+	cursol: pointer;
+	background-color: #f4ffff;
+}
+

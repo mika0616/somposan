@@ -5,25 +5,36 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		@question = Question.new(question_params)
+		accident = Accident.find(params[:accident_id])
+		@question = current_question_user.questions.new(question_params)
+		@question.accident_id = accident.id
 		if @question.save
-			flash[:notice]  = '質問を投稿しました！&#13;&#10;ついた回答からベストアンサーを選びましょう。'.html_safe
-			redirect_to question_path(params[:id])
+			flash[:notice]  = '質問を投稿しました！ついた回答からベストアンサーを選びましょう。'
+			# ばぐあり！！！
+			redirect_to accident_question_path(@question.id)
 		else
 			render action: :new
 		end
-	end
+	end 
 
 	def edit
-		
+		@question = Question.find(params[:id])
 	end
 
 	def update
-		
+		@question = Question.find(params[:id])
+		if @question.update(question_params)
+			flash[:notice]  = '質問を編集しました！ついた回答からベストアンサーを選びましょう。'
+			redirect_to accident_question_path(@question.id)
+		else
+			render action: :edit
+		end
 	end
 
 	def show
-		
+		@question = Question.find(params[:id])
+		@answer = Answer.new
+		@best_answer = BestAnswer.new
 	end
 
 	def destroy
@@ -32,5 +43,10 @@ class QuestionsController < ApplicationController
 
 	def serch
 		
+	end
+
+	private
+	def question_params
+		params.require(:question).permit(:title, :body, tag_ids:[])
 	end
 end
