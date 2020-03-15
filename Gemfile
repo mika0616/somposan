@@ -82,3 +82,9 @@ gem 'font-awesome-sass'
 gem 'ransack'
 gem 'impressionist'
 gem 'devise'
+
+# 追加デプロイ用gem
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
