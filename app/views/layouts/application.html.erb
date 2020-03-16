@@ -19,70 +19,7 @@
           <% end %>
           <!-- 検索ボックス -->
           <div class="headder-serch-form"><div class="serch-form"></div><div class="serch-icon fas fa-search"></div></div>
-          <!-- ログイン済みの場合はマイページリンクが表示され、それ以外はログインサインアップが表示される -->
-          <% if question_user_signed_in? %>
-          <div class="header-button-group">
-            <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-            <%= link_to question_user_path(current_question_user.id) do %>
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <% end %>
-            <%= link_to destroy_question_user_session_path, method: :delete do %>
-              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-            <% end %>
-          </div>
-          <% elsif answer_user_signed_in? %>
-          <div class="header-button-group">
-            <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-            <%= link_to answer_user_path(current_answer_user.id) do %>
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <% end %>
-            <%= link_to destroy_answer_user_session_path, method: :delete do %>
-              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-            <% end %>
-          </div>
-          <% else %>
-            <div class="header-button-group">
-              <%= link_to homes_before_login_path do %>
-              <span class="header-login-button-wrap">ログイン</span>
-              <% end %>
-              <%= link_to homes_before_signup_path do %>
-              <span class="header-signup-button-wrap">利用登録</span>
-              <% end %>
-            </div>
-            <% end %>
-        </div>
-        <!-- アバウトセクション（未ログインの場合）-->
-        <% unless question_user_signed_in? || answer_user_signed_in? %>
-          <section class="header-about-section row">
-            <div class="header-about-box col-xs-7">
-              <div>
-                <h3>事故のお悩み持ち寄り相談</h3>
-                <h1>みんなのそんぽさん</h1>
-                <h2>
-                  損害保険社員が参加する交通事故相談特化型のQAサイト
-                </h2>
-                <p>
-                  事故の困り事を投稿すれば、
-                  会社の垣根を越えて損保社員が交通事故の相談にお答えします。
-                </p>
-                <p>>><%= link_to "詳しく見る", homes_about_path %></p>
-                <p>質問数　　件</p>
-                <p>アンサー数　件</p>
-                <p>現在の回答率　％</p>
-              </div>
-            </div>
-            <div class="header-signup-box col-md-5">
-              <div>
-                <%= link_to "損保社員として示談交渉経験者はこちら", homes_before_login_path, class:"btn btn-success" %>
-                <p>回答ができます</p>
-                <%= link_to "交通事故でお困りの方はこちら", homes_before_signup_path, class:"btn btn-success" %>
-                <p>質問ができます</p>
-                <p>アカウントをお持ちの方</p>
-              </div>
-            </div>
-          </section>
-        <% end %>
-        <!-- / -->
+          
       </div>
     </header>
     <div class="container">

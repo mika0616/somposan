@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'homes/about_score' => 'homes#about_score'
   get 'homes/about_level' => 'homes#about_level'
   get 'homes/guide' => 'homes#guide'
+  get 'homes/about_situation' => 'homes#about_situation'
 
   # accidents
   resources :accidents, except: [:index] do
