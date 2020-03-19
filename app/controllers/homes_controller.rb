@@ -26,4 +26,10 @@ class HomesController < ApplicationController
 	def guide
 		
 	end
+	def about_situation
+		
+	end
+	def solve
+		
+	end
 end

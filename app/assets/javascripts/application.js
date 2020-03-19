@@ -12,7 +12,7 @@
 //
 
  //= require rails-ujs
-  //= require turbolinks
+
   //= require jquery
   //= require jquery_ujs
   //= require bootstrap-sprockets
@@ -41,3 +41,18 @@
 		});
 	});
  });
+
+ // 解決レポートは入力しないとsubmitボタンが有効にならないようにする
+
+	$(function() {
+	  if ($("#solution-report").val().length == 0) {
+	    $("#solution-report-submit").prop("disabled", true);
+	  }
+	  $("#solution-report").on("keydown keyup keypress change", function() {
+	    if ( $(this).val().length > 0 ) {
+	      $("#solution-report-submit").prop("disabled", false);
+	    } else {
+	      $("#solution-report-submit").prop("disabled", true);
+	    }
+	  });
+	});

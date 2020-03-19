@@ -30,3 +30,17 @@
 .user-select-box .user-select-button{
 	width: calc(100% /2);
 }
+
+// solve
+.solve-view{
+	height: 70vh;
+	margin: 30px 0;
+	padding: 30px;
+	background-color: white;
+	.solve-message{
+		text-align: center;
+		font-size: 25px;
+		font-weight: bold;
+	}
+	.solve-img{}
+}

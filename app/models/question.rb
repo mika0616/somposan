@@ -2,7 +2,7 @@ class Question < ApplicationRecord
 	# アソシエーション
 	belongs_to :question_user
 	has_many :favorites, dependent: :destroy
-	has_one :accident, dependent: :destroy
+	belongs_to :accident
 	has_many :question_tags, dependent: :destroy
 	has_many :answers, dependent: :destroy
 	has_one :best_answer, dependent: :destroy
@@ -16,4 +16,5 @@ class Question < ApplicationRecord
 
 	# ステータス
 	enum status: {"回答受付中": false, "解決済み": true}
+
 end

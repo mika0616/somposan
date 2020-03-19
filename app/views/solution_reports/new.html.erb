@@ -1,0 +1,40 @@
+<!-- エラーメッセージ -->
+<% if @solution_report.errors.any? %>
+	<div class="alert alert-danger" role="alert">
+		<strong>エラー</strong>
+		<ul>
+			<% @solutuion_report.errors.full_messages do |message| %>
+			<li><p><%= message %></p></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<!-- /エラーメッセージ -->
+<div class="new-solution-report-view">
+	<div class="newsolution-report-section row">
+		
+		<div class="best-answer-alert-box">
+			<p>ベストアンサーを選択しました</p>
+		</div>
+		<div class="accident-solution-box">
+			<div class="solution-report-alert alert alert-info" role="alert">
+				<strong>事故は解決しましたか？</strong>：　解決レポートに実際に解決した内容を投稿して教えてください。事故のステータスを解決済みにしましょう！
+			</div>
+			<%= form_for(@solution_report, url:accident_solution_reports_path(@accident)) do |f| %>
+			<div>
+				<%= f.hidden_field :accident_id, value: @accident.id %>
+				<%= f.text_area :body, id:"solution-report", class:"form-control", rows:"10", id:"InputTextarea", placeholder:"解決内容&#13;&#10;&#13;&#10;過失割合は0:100。私の車のドライブレコーダーの映像によって、相手の赤信号無視の過失が証明されました。相手の保険会社より全額補償を受けることができました。".html_safe %>
+			</div>
+			<div class="solution-report-submit-btn-wrap text-right">
+				<%= f.submit "解決済みにする", id:"solution-report-submit", class:"btn btn-primary" %>
+			</div>
+			<% end %>
+			<div class="pending-btn-wrap text-right">
+				<%= link_to "まだ対応中です", question_user_path(current_question_user.id), class:"btn btn-default" %>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
