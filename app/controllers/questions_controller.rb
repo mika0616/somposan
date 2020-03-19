@@ -10,8 +10,7 @@ class QuestionsController < ApplicationController
 		@question.accident_id = accident.id
 		if @question.save
 			flash[:notice]  = '質問を投稿しました！ついた回答からベストアンサーを選びましょう。'
-			# ばぐあり！！！
-			redirect_to accident_question_path(@question.id)
+			redirect_to accident_question_path(@question,@question)
 		else
 			render action: :new
 		end
@@ -25,7 +24,7 @@ class QuestionsController < ApplicationController
 		@question = Question.find(params[:id])
 		if @question.update(question_params)
 			flash[:notice]  = '質問を編集しました！ついた回答からベストアンサーを選びましょう。'
-			redirect_to accident_question_path(@question.id)
+			redirect_to accident_question_path(@question,@question)
 		else
 			render action: :edit
 		end

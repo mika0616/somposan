@@ -29,4 +29,7 @@ class HomesController < ApplicationController
 	def about_situation
 		
 	end
+	def solve
+		
+	end
 end

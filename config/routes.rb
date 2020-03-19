@@ -25,25 +25,26 @@ Rails.application.routes.draw do
   get 'homes/about_level' => 'homes#about_level'
   get 'homes/guide' => 'homes#guide'
   get 'homes/about_situation' => 'homes#about_situation'
+  get 'solve' => 'homes#solve'
 
   # accidents
   resources :accidents, except: [:index] do
+    # questions
     resources :questions, except: [:index] do
       member do
         get 'questions/serch' => 'questions#serch'
       end
     end
+    # solution_reports
+    resources :solution_reports, except: [:index, :show] do
+    member do
+      get 'solve' => 'solution_reports#solve'
+    end
+  end
   end
 
   # answers
   resources :answers, only: [:create, :edit, :update]
-
-  # solution_reports
-  resources :solution_reports, except: [:index, :show] do
-  	member do
-  		get 'solution_reports/solve' => 'solution_reports#solve'
-  	end
-  end
 
   # answer_users
   resources :answer_users, except: [:new, :create, :destroy]
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
   resources :question_users,except: [:index, :new, :create, :destroy]
 
   # best_answers
-  resources :best_answers, only: [:create] do
+  resources :best_answers, only: [:create, :destroy] do
   	member do
   		get 'best_answers/confirm' => 'best_answers#confirm'
   	end

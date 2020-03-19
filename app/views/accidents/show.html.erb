@@ -8,7 +8,7 @@
 	<div class="accident-section row">
 		<div class="accident-info-box">
 			<span class="question-user-name"><%= @accident.question_user.name %></span>
-			<span class="accident-created-at"><%= @accident.created_at %>に投稿</span>
+			<span class="accident-created-at"><%= @accident.created_at.strftime('%Y/%m/%d') %>に投稿</span>
 		</div>
 		<div class="accident-title-box">
 			<% if @accident.status == "対応中" %>
@@ -21,7 +21,7 @@
 					<h2><%= @accident.title %></h2>
 				</div>
 				<div class="accident-edit-link">
-					<% if current_question_user.id == @accident.question_user_id %>
+					<% if question_user_signed_in? && current_question_user.id == @accident.question_user_id %>
 						<%= link_to edit_accident_path(@accident.id), class:"link-tag accident-edit" do %>
 							<div class="accident-edit-link-icon glyphicon glyphicon-edit" aria-hidden="true"></div>
 						<% end %>
@@ -59,7 +59,7 @@
 						<% @accident.questions.each do |question| %>
 						<tr>
 							<td>
-								<%= link_to accident_question_path(question.id), class:"link-tag" do %>
+								<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
 								<div>
 									<i class="fas fa-question"></i><%= question.title %>
 								</div>
@@ -77,13 +77,14 @@
 			<% if @accident.status == "対応中" %>
 
 				<!-- 投稿ユーザの場合 -->
-				<% if current_question_user.id == @accident.question_user.id %>
+				<% if question_user_signed_in? && current_question_user.id == @accident.question_user.id %>
 					<div>
 						<div class="alert alert-info" role="alert">
 							<strong>事故は解決しましたか？</strong>：　解決レポートに実際に解決した内容を投稿して教えてください。事故のステータスを解決済みにしましょう！
 						</div>
-						<%= form_for(@solution_report) do |f| %>
+						<%= form_for(@solution_report, url:accident_solution_reports_path(@accident.id)) do |f| %>
 						<div>
+							<%= f.hidden_field :accident_id, value: @accident.id %>
 							<%= f.text_area :body, class:"form-control", rows:"10", id:"InputTextarea", placeholder:"解決内容&#13;&#10;&#13;&#10;過失割合は0:100。私の車のドライブレコーダーの映像によって、相手の赤信号無視の過失が証明されました。相手の保険会社より全額補償を受けることができました。".html_safe %>
 						</div>
 						<div class="solution-report-submit-btn-wrap text-right">
@@ -92,7 +93,7 @@
 						<% end %>
 					</div>
 				<!-- それ以外 -->
-				<% else %>>
+				<% else %>
 					<div>
 						<div class="alert alert-warning text-center" role="alert">この事故はまだ解決していません。</div>
 					</div>
@@ -100,16 +101,17 @@
 			<!-- 事故ステータスが解決済み -->
 			<% else %>
 				<div>
-					<!-- 投稿ユーザーの場合 -->
-					<% if current_question_user.id == @accident.question_user.id %>
-					<div>
-						<%= link_to edit_solution_report_path(@accident.solution_report.id) do %>
-							<div class="solution-report-edit-link-icon glyphicon glyphicon-edit text-right" aria-hidden="true"></div>
+					<p><%= @accident.solution_report.created_at.strftime('%Y/%m/%d') %>に投稿</p>
+					<p><%= @accident.solution_report.body %></p>
+					<!-- 事故ステータスが解決済み && 投稿ユーザーの場合 -->
+					<% if question_user_signed_in? && current_question_user.id == @accident.question_user.id %>
+					<div class="solution-report-link-box text-right">
+						<%= link_to edit_accident_solution_report_path(@accident, @accident.solution_report.id) do %>
+							<span>解決レポートを編集</span>
+							<span class="solution-report-edit-link-icon glyphicon glyphicon-edit text-right" aria-hidden="true"></span>
 						<% end %>
 					</div>
 					<% end %>
-					<p><%= @accident.solution_report.created_at %>に投稿</p>
-					<p><%= @accident.solution_report.body %></p>
 				</div>
 			<% end %>
 		</div>

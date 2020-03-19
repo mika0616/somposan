@@ -1,3 +1,29 @@
 // Place all the styles related to the SolutionReports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// new
+.new-solution-report-view{
+	margin: 30px 0;
+	.newsolution-report-section{
+		padding: 30px;
+		background-color: white;
+		.best-answer-alert-box{
+			margin: 50px 0;
+			text-align: center;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.accident-solution-box{
+			.solution-report-alert{
+
+			}
+			.solution-report-submit-btn-wrap{
+				margin-top: 10px;
+			}
+			.pending-btn-wrap{
+				margin-top: 10px;
+			}
+		}
+	}
+}

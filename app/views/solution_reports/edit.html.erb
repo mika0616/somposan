@@ -1,0 +1,26 @@
+<!-- エラーメッセージ -->
+<% if @solution_report.errors.any? %>
+	<div class="alert alert-danger" role="alert">
+		<strong>エラー</strong>
+		<ul>
+			<% @solution_report.errors.full_messages do |message| %>
+			<li><p><%= message %></p></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<!-- /エラーメッセージ -->
+<div class="new-solution-report-view">
+	<div class="newsolution-report-section row">
+		<div class="accident-solution-box">
+			<%= form_for(@solution_report, url:accident_solution_report_path) do |f| %>
+			<div>
+				<%= f.text_area :body, id:"solution-report", class:"form-control", rows:"10", id:"InputTextarea", placeholder:"解決内容&#13;&#10;&#13;&#10;過失割合は0:100。私の車のドライブレコーダーの映像によって、相手の赤信号無視の過失が証明されました。相手の保険会社より全額補償を受けることができました。".html_safe %>
+			</div>
+			<div class="solution-report-submit-btn-wrap text-right">
+				<%= f.submit "編集内容を更新", id:"solution-report-submit", class:"btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

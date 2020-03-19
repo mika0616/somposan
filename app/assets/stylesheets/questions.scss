@@ -5,25 +5,29 @@
 //new
 .new-question-view{
 	margin: 30px 0;
-	.question-guide{
-		text-align: center;
-		border-bottom: solid #bfbfbf 1px;
-		font-size: 20px;
-		margin-bottom: 10px;
-	}
-	.question-form{
-		margin-bottom: 10px;
-	}
-	.question-tag-section{
-		text-align: center;
-		.tag-guide{
+	.question-form-section{
+		padding: 30px;
+		background-color: white;
+		.question-guide{
+			text-align: center;
 			border-bottom: solid #bfbfbf 1px;
 			font-size: 20px;
+			margin-bottom: 10px;
 		}
-	}
-	.question-submit-btn-wrap{
-		margin-top: 30px;
-		text-align: center;
+		.question-form{
+			margin-bottom: 10px;
+		}
+		.question-tag-section{
+			text-align: center;
+			.tag-guide{
+				border-bottom: solid #bfbfbf 1px;
+				font-size: 20px;
+			}
+		}
+		.question-submit-btn-wrap{
+			margin-top: 30px;
+			text-align: center;
+		}
 	}
 }
 
@@ -103,6 +107,7 @@
 			}
 			.accident-link-title{
 				border-bottom: 1px solid #dfdfdf;
+				font-weight: bold;
 			}
 			.accident-link-box{
 				margin-top: 30px;
@@ -128,13 +133,37 @@
 		}
 	}
 	.answers-section{
-		padding: 30px;
 		margin-top: 15px;
 		background-color: white;
 		.answers-count{
+			padding: 30px 30px 10px 30px;
 			h2{
 				margin-top: 0;
-				border-bottom: 1px solid #dfdfdf;
+				font-weight: bold;
+				.count-number{
+					color: #FEAE6C;
+				}
+			}
+		}
+		.best-answer-section{
+			padding: 10px 30px 10px 30px;
+    		background-color: #FEF1E6;
+			h3{
+				font-weight: bold;
+			}
+			.best_answer_icon{
+				margin-right: 10px;
+				color: #FFA75F;
+			}
+		}
+		.other-answers-section{
+			padding: 0px 30px 30px 30px;
+			h3{
+				font-weight:bold;
+				.answer-icon{
+					margin-right: 10px;
+					color: #32c5f0;
+				}
 			}
 		}
 	}
@@ -146,6 +175,6 @@
 
 .accident-link-box:hover{
 	cursol: pointer;
-	background-color: #f4ffff;
+	background-color: #EEEEED;
 }
 

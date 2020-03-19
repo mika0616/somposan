@@ -17,12 +17,4 @@ class Question < ApplicationRecord
 	# ステータス
 	enum status: {"回答受付中": false, "解決済み": true}
 
-	# 独自メソッド
-	def answer_count
-		count = 0
-		answers.each do |answer|
-			count += answer.count
-		end
-		count
-	end
 end

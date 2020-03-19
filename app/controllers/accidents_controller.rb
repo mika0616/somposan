@@ -6,7 +6,7 @@ class AccidentsController < ApplicationController
 	def create
 		@accident = current_question_user.accidents.new(accident_params)
 		if @accident.save
-			redirect_to new_accident_question_path
+			redirect_to new_accident_question_path(@accident)
 		else
 			render action: :new
 		end
