@@ -1,0 +1,63 @@
+<!-- エラーメッセージ -->
+<% if @answer_user.errors.any? %>
+	<div class="error-message alert alert-danger row" role="alert">
+		<strong>エラー</strong>
+		<ul>
+			<% @answer_user.errors.full_messages do |message| %>
+			<li><p><%= message %></p></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<!-- /エラーメッセージ -->
+<div class="edit-profile-view row">
+	<%= form_for(@answer_user) do |f| %>
+	<div class="form-box row">
+		<div class="col-xs-4"><h4>アカウント名</h4></div>
+		<div class="col-xs-8"><%= f.text_field :name, class:"form-control" %></div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4"><h4>経歴紹介文</h4></div>
+		<div class="col-xs-8">
+			<p>事故対応の経験などご自身の経歴を入力してください。</p>
+			<%= f.text_area :production, rows:"15", id:"InputTextArea", placeholder:"経歴を入力してください。", class:"form-control" %>
+		</div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4"><h4>現役/退職済み</h4></div>
+		<div class="col-xs-8">
+			<p>現時点で損保社員として在職しているかを選んでください。</p>
+			<%= f.select :status, AnswerUser.statuses.keys.to_a, class:"form-control" %>
+		</div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4">
+			<h4>経験年数</h4>
+		</div>
+		<div class="col-xs-8">
+			<p><i class="fas fa-exclamation-triangle"></i>事故対応担当者としての経験年数を選んでください</p>
+			<%= f.select :career, AnswerUser.careers.keys.to_a, class:"form-control" %>
+		</div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4"><h4>専門</h4></div>
+		<div class="col-xs-8">
+			<p>担当する業務が物損かケガ対応かマルチ対応か選んでください。</p>
+			<%= f.select :speciality, AnswerUser.specialities.keys.to_a, class:"form-control" %>
+		</div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4">
+			<h4>アジャスター資格</h4>
+		</div>
+		<div class="col-xs-8">
+			<p><i class="fas fa-exclamation-triangle"></i>技術アジャスター資格保有者の方のみ選択してください。</p>
+			<%= f.select :qualification, AnswerUser.qualifications.keys.to_a, class:"form-control" %>
+		</div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4"></div>
+		<div class="col-xs-8"><%= f.submit "プロフィール情報を更新する", class:"btn btn-primary" %></div>
+	</div>
+	<% end %>
+</div>

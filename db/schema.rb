@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_172241) do
+ActiveRecord::Schema.define(version: 2020_03_20_081029) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(version: 2020_03_12_172241) do
     t.text "production"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status"
+    t.integer "career"
+    t.integer "speciality"
+    t.integer "qualification"
     t.index ["email"], name: "index_answer_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_answer_users_on_reset_password_token", unique: true
   end
@@ -109,9 +113,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_172241) do
   end
 
   create_table "skills", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status"
+    t.integer "career"
+    t.integer "speciality"
+    t.integer "qualification"
+    t.integer "answer_user_id"
   end
 
   create_table "solution_reports", force: :cascade do |t|

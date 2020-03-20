@@ -108,12 +108,10 @@
 						<%= @question.best_answer.answer.answer_user.name %>
 					<% end %>
 				</span>
-				<span class="label label-success">tag</span>
-				<% @question.best_answer.answer.answer_user do |answer_user| %>
-					<% answer_user.skills.each do |skill| %>
-						<span class="label label-success"><%= skill %></span>
-					<% end %>
-				<% end %>
+				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.status %></span>
+				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.career %></span>
+				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.speciality %></span>
+				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.qualification %></span>
 				<p class="text-right"><%= @question.best_answer.answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
 				<%= link_to "消す", best_answer_path(@question.best_answer.id), :method => :delete %>
 			</div>
@@ -127,12 +125,10 @@
 							<%= answer.answer_user.name %>
 						<% end %>
 					</span>
-					<% answer.answer_user do |answer_user| %>
-						<% answer_user.skills.each do |skill| %>
-							<span class="label label-success"><%= skill %></span>
-						<% end %>
-					<% end %>
-					<span class="label label-success">tag</span>
+					<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+					<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+					<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+					<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
 					<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
 				</div>
 				<% end %>
@@ -153,12 +149,10 @@
 											<%= answer.answer_user.name %>さん
 										<% end %>
 									</span>
-									<span class="label label-success">tag</span>
-									<% answer.answer_user do |answer_user| %>
-										<% answer_user.skills.each do |skill| %>
-											<span class="label label-success"><%= skill %></span>
-										<% end %>
-									<% end %>
+									<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
 									<p><%= answer.body %></p>
 									<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
 									<div class="text-right">
@@ -189,11 +183,10 @@
 										<% end %>
 									</span>
 									<span class="label label-success">tag</span>
-									<% answer.answer_user do |answer_user| %>
-										<% answer_user.skills.each do |skill| %>
-											<span class="label label-success"><%= skill %></span>
-										<% end %>
-									<% end %>
+									<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+									<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
 									<p><%= answer.body %></p>
 									<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
 								</td>

@@ -1,3 +1,144 @@
 // Place all the styles related to the QuestionUsers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.maypage-view{
+	margin:30px 0;
+	background-color: white;
+	.profile-section{
+		padding: 30px;
+		.profile-box1{
+			margin-bottom: 50px;
+			display: flex;
+			.img{
+				margin: 10px;
+			}
+			.name-score-level{
+				margin: auto 50px;
+				h2{
+					margin-bottom: 30px;
+					font-weight: bold;
+				}
+				h4{
+					font-weight: bold;
+					span{
+						margin-left: 10px;
+						color: #FFA75F;
+					}
+				}
+			}
+			.profile-edit-box{
+				margin-left: auto;
+				font-size: 50px;
+				color: #3f3f3f;
+			}
+			.profile-edit-box:hover{
+				color: #8A8888;
+			}
+		}
+		.profile-box2{
+			margin-bottom: 50px;
+			h4{
+				border-left: 3px solid #32c5f0;
+				padding-left: 10px;
+				font-weight: bold;
+			}
+			.nill{
+				color: #8A8888;
+			}
+			.skill-box{
+				margin: 20px;
+				.skill{
+					font-size: 20px;
+				}
+			}
+		}
+		.profile-box3{
+			margin-bottom: 50px;
+			h4{
+				border-left: 3px solid #32c5f0;
+				padding-left: 10px;
+				font-weight: bold;
+			}
+			.nill{
+				color: #8A8888;
+			}
+		}
+	}
+	.index-section{
+		.tabs{
+			position: relative;
+			.tab-buttons span{
+				cursor: pointer;
+				display: block;
+				width: 33.3%;
+				float: left;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+			}
+		}
+		.tab-content{
+			width: 100%;
+			display: inline-block;
+			.link-box{
+				display: flex;
+				.situation-img{
+					padding: 15px;
+					font-size: 15px;
+					font-weight: bold;
+				}
+				.question-status{
+					padding: 15px;
+				}
+				.question-title{
+					i{
+						padding-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.link-box:hover{
+	background-color: #dfdfdf;
+}
+
+#lamp{
+	width: 33.3%;
+	height: 5px;
+	border-radius: 5px;
+	background-color: #32c5f0;
+	display: block;
+	position: absolute;
+	top: 40px;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content2{
+	left: 33.3%;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content3{
+	left: 66.6%;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content1{
+	left: 0;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}

@@ -1,2 +1,0 @@
-class AnswerUserSlill < ApplicationRecord
-end

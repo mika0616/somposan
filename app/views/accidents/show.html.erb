@@ -1,13 +1,17 @@
 <!-- サクセスメッセージ -->
 <% if flash[:notice].present? %>
-<div class="success-message alert alert-success" role="alert" id ="notice"><%= flash[:notice] %></div>
+<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
 <% end %>
 <!-- / -->
 
 <div class="accident-view">
 	<div class="accident-section row">
 		<div class="accident-info-box">
-			<span class="question-user-name"><%= @accident.question_user.name %></span>
+			<span class="question-user-name">
+				<%= link_to question_user_path(@accident.question_user.id) do %>
+				<%= @accident.question_user.name %>
+				<% end %>
+			</span>
 			<span class="accident-created-at"><%= @accident.created_at.strftime('%Y/%m/%d') %>に投稿</span>
 		</div>
 		<div class="accident-title-box">
@@ -70,6 +74,13 @@
 					</tbody>
 				</table>
 			</div>
+			<% if question_user_signed_in? && current_question_user.id == @accident.question_user.id %>
+				<div class="text-center">
+					<%= link_to new_accident_question_path(@accident.id), class:"link-tag" do %>
+					<div class="new-question-box btn btn-success"><i class="fas fa-plus"></i><span>この事故に関する質問を投稿する</span></div>
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 		<div class="accident-solution-box">
 			<h4>解決レポート</h4>

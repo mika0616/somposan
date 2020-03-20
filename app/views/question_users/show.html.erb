@@ -1,0 +1,112 @@
+<!-- サクセスメッセージ -->
+<% if flash[:notice].present? %>
+<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
+<% end %>
+<!-- / -->
+
+<div class="maypage-view row">
+	<div class="profile-section">
+			<div class="profile-box1">
+					<div class="img">
+						<div><%= image_tag 'no-img.jpg', class:"img-circle", :size => '250x250' %></div>
+					</div>
+					<div class="name-score-level">
+						<h2><%= @question_user.name %></h2>
+					</div>
+					<!-- 本人の場合 -->
+					<% if question_user_signed_in? && current_question_user.id == @question_user.id %>
+					<div class="profile-edit-box">
+						<%= link_to edit_question_user_path(@question_user.id), class:"link-tag" do %>
+							<div class="fas fa-cog"></div>
+						<% end %>
+					</div>
+					<% end %>
+			</div>
+	</div>
+	<div class="index-section">
+		<div class='tabs'>
+		  <div class='tab-buttons'>
+		    <span class='content1'>
+		    	<p class="badge"><%= @question_user.questions.count %></p>
+		    	投稿した質問
+		    </span>
+		    <span class='content2'>
+		    	<p class="badge"><%= @question_user.accidents.count %></p>
+		    	投稿した事故
+		    </span>
+		    <span class='content3'>
+		    	<p class="badge"><%= @question_user.favorites.count %></p>
+		    	参考になった
+		    </span>
+		    <div id='lamp' class='content1'></div>
+		  </div>
+		<div class="tab-content">
+			<!-- 投稿した質問タブ -->
+			<div class="content1">
+				<% if @question_user.questions.present? %>
+					<% @question_user.questions.each do |question| %>
+						<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+						<div class="link-box">
+							<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+							<div class="question-status">
+								<% if question.status == "回答受付中" %>
+									<p class="question-status-false label label-warning"><%= question.status %></p>
+								<% else %>
+									<p class="question-status-true label label-success"><%= question.status %></p>
+								<% end %>
+								<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
+							</div>
+						</div>
+						<% end %>
+					<% end %>
+				<% else %>
+					<div>
+						<p>まだ質問がありません。</p>
+					</div>
+				<% end %>
+			</div>
+			<!-- 投稿した事故タブ -->
+			<div class="content2">
+				<% @question_user.accidents.each do |accident| %>
+					<%= link_to accident_path(accident.id), class:"link-tag" do %>
+					<div class="link-box">
+						<div class="situation-img"><%= attachment_image_tag accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="question-status">
+							<% if accident.status == "対応中" %>
+								<p class="question-status-false label label-warning"><%= accident.status %></p>
+							<% else %>
+								<p class="question-status-true label label-success"><%= accident.status %></p>
+							<% end %>
+							<div class="question-title"><i class="fas fa-question"></i><%= accident.title %></div>
+						</div>
+					</div>
+					<% end %>
+				<% end %>
+			</div>
+			<!-- 参考になった質問タブ -->
+			<div class="content3">
+				<% if @question_user.questions.present? %>
+					<% @question_user.questions.each do |question| %>
+						<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+						<div class="link-box">
+							<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+							<div class="question-status">
+								<% if question.status == "回答受付中" %>
+									<p class="question-status-false label label-warning"><%= question.status %></p>
+								<% else %>
+									<p class="question-status-true label label-success"><%= question.status %></p>
+								<% end %>
+								<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
+							</div>
+						</div>
+						<% end %>
+					<% end %>
+				<% else %>
+					<div>
+						<p>まだ質問がありません。</p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

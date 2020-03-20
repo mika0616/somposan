@@ -1,6 +1,6 @@
 <!-- エラーメッセージ -->
 <% if @solution_report.errors.any? %>
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-danger row" role="alert">
 		<strong>エラー</strong>
 		<ul>
 			<% @solutuion_report.errors.full_messages do |message| %>
