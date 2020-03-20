@@ -44,15 +44,36 @@
 
  // 解決レポートは入力しないとsubmitボタンが有効にならないようにする
 
-	$(function() {
-	  if ($("#solution-report").val().length == 0) {
-	    $("#solution-report-submit").prop("disabled", true);
-	  }
-	  $("#solution-report").on("keydown keyup keypress change", function() {
-	    if ( $(this).val().length > 0 ) {
-	      $("#solution-report-submit").prop("disabled", false);
-	    } else {
-	      $("#solution-report-submit").prop("disabled", true);
-	    }
+$(function() {
+  if ($("#solution-report").val().length == 0) {
+    $("#solution-report-submit").prop("disabled", true);
+  }
+  $("#solution-report").on("keydown keyup keypress change", function() {
+    if ( $(this).val().length > 0 ) {
+      $("#solution-report-submit").prop("disabled", false);
+    } else {
+      $("#solution-report-submit").prop("disabled", true);
+    }
+  });
+});
+
+// answer-user-mypageタブ切り替え
+$(function() {
+	$('.tab-content>div').hide();
+	$('.tab-content>div').first().slideDown();
+	  $('.tab-buttons span').click(function(){
+	    var thisclass=$(this).attr('class');
+	    $('#lamp').removeClass().addClass('#lamp').addClass(thisclass);
+	    $('.tab-content>div').each(function(){
+	      if($(this).hasClass(thisclass)){
+	        $(this).fadeIn(800);
+	      }
+	      else{
+	        $(this).hide();
+	      }
+	    });
 	  });
-	});
+});
+
+
+

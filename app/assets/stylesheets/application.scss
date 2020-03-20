@@ -36,6 +36,11 @@
 	color: black;
 }
 
+// エラーメッセージ
+.error-message{
+	margin-top: 30px;
+}
+
 /*ヘッダー*/
 .header-bar{
 	display: flex;
@@ -43,7 +48,7 @@
 	height: 8vh;
 	background-color: #32c5f0;
 	color: white;
-	padding: 7px;
+	padding: 7px 150px;
 	.header-logo-box{
 		height: 100%;
 		width: 360px;

@@ -1,0 +1,24 @@
+<!-- エラーメッセージ -->
+<% if @question_user.errors.any? %>
+	<div class="alert alert-danger row" role="alert">
+		<strong>エラー</strong>
+		<ul>
+			<% @question_user.errors.full_messages do |message| %>
+			<li><p><%= message %></p></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<!-- /エラーメッセージ -->
+<div class="edit-profile-view row">
+	<%= form_for(@question_user) do |f| %>
+	<div class="form-box row">
+		<div class="col-xs-4"><h4>アカウント名</h4></div>
+		<div class="col-xs-8"><%= f.text_field :name, class:"form-control" %></div>
+	</div>
+	<div class="form-box row">
+		<div class="col-xs-4"></div>
+		<div class="col-xs-8"><%= f.submit "プロフィール情報を更新する", class:"btn btn-primary" %></div>
+	</div>
+	<% end %>
+</div>

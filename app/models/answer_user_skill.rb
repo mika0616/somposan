@@ -1,0 +1,2 @@
+class AnswerUserSkill < ApplicationRecord
+end

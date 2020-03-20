@@ -1,0 +1,129 @@
+<!-- サクセスメッセージ -->
+<% if flash[:notice].present? %>
+<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
+<% end %>
+<!-- / -->
+
+<div class="maypage-view row">
+	<div class="profile-section">
+			<div class="profile-box1">
+					<div class="img">
+						<div><%= image_tag 'no-img.jpg', class:"img-circle", :size => '250x250' %></div>
+					</div>
+					<div class="name-score-level">
+						<h2><%= @answer_user.name %></h2>
+						<h4>獲得スコア<span><%= @answer_user.score %>pt</span> </h4>
+						<h4><%= @answer_user.level %></h4>
+					</div>
+					<!-- 本人の場合 -->
+					<% if answer_user_signed_in? && current_answer_user.id == @answer_user.id %>
+					<div class="profile-edit-box">
+						<%= link_to edit_answer_user_path(@answer_user.id), class:"link-tag" do %>
+							<div class="fas fa-cog"></div>
+						<% end %>
+					</div>
+					<% end %>
+			</div>
+			<div class="profile-box2">
+				<h4>スキルセット</h4>
+				<% if @answer_user.status.nil? && @answer_user.career.nil? && @answer_user.speciality.nil? && @answer_user.qualification.nil? %>
+					<p class="nill">スキルセットの登録がありません。</p>
+				<% else %>
+					<div class="skill-box">
+						<span class="skill label label-primary"><%= @answer_user.status %></span>
+						<span class="skill label label-primary"><%= @answer_user.career %></span>
+						<span class="skill label label-primary"><%= @answer_user.speciality %></span>
+						<span class="skill label label-primary"><%= @answer_user.qualification %></span>
+					</div>
+				<% end %>
+			</div>
+			<div class="profile-box3">
+				<h4>経歴紹介</h3>
+				<% if @answer_user.production.nil? %>
+					<p class="nill">経歴紹介の登録がありません。</p>
+				<% else %>
+					<p><%= @answer_user.production %></p>
+				<% end %>
+			</div>
+	</div>
+	<div class="index-section">
+		<div class='tabs'>
+		  <div class='tab-buttons'>
+		    <span class='content1'>
+		    	<p class="badge"><%= @answer_user.answers.count %></p>
+		    	回答した質問
+		    </span>
+		    <span class='content2'>
+		    	<p class="badge"><%= @answer_user.answers.count %></p>
+		    	ベストアンサーになった質問
+		    </span>
+		    <span class='content3'>
+		    	<p class="badge"><%= @answer_user.favorites.count %></p>
+		    	参考になった
+		    </span>
+		    <div id='lamp' class='content1'></div>
+		  </div>
+		<div class="tab-content">
+			<!-- 回答した質問タブ -->
+			<div class="content1">
+				<% if @answer_user.answers.present? %>
+					<% @answer_user.answers.each do |answer| %>
+						<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+						<div class="link-box">
+							<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
+							<div class="question-status">
+								<% if answer.question.status == "回答受付中" %>
+									<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+								<% else %>
+									<p class="question-status-true label label-success"><%= answer.question.status %></p>
+								<% end %>
+								<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+							</div>
+						</div>
+						<% end %>
+					<% end %>
+				<% else %>
+					<div>
+						<p>まだ回答がありません。</p>
+					</div>
+				<% end %>
+			</div>
+			<!-- ベストアンサーにになった質問タブ -->
+			<div class="content2">
+				<% @answer_user.answers.each do |answer| %>
+					<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+					<div class="link-box">
+						<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="question-status">
+							<% if answer.question.status == "回答受付中" %>
+								<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+							<% else %>
+								<p class="question-status-true label label-success"><%= answer.question.status %></p>
+							<% end %>
+							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+						</div>
+					</div>
+					<% end %>
+				<% end %>
+			</div>
+			<!-- 参考になった質問タブ -->
+			<div class="content3">
+				<% @answer_user.answers.each do |answer| %>
+					<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+					<div class="link-box">
+						<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="question-status">
+							<% if answer.question.status == "回答受付中" %>
+								<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+							<% else %>
+								<p class="question-status-true label label-success"><%= answer.question.status %></p>
+							<% end %>
+							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+						</div>
+					</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
