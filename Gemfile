@@ -82,6 +82,7 @@ gem 'font-awesome-sass'
 gem 'ransack'
 gem 'impressionist'
 gem 'devise'
+gem 'acts-as-taggable-on', '~> 6.0'
 
 # 追加デプロイ用gem
 gem 'dotenv-rails'

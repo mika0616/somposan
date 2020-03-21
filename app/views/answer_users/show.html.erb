@@ -78,6 +78,7 @@
 									<p class="question-status-true label label-success"><%= answer.question.status %></p>
 								<% end %>
 								<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+								<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
 							</div>
 						</div>
 						<% end %>
@@ -101,6 +102,7 @@
 								<p class="question-status-true label label-success"><%= answer.question.status %></p>
 							<% end %>
 							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+							<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
 						</div>
 					</div>
 					<% end %>
@@ -119,6 +121,7 @@
 								<p class="question-status-true label label-success"><%= answer.question.status %></p>
 							<% end %>
 							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
+							<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
 						</div>
 					</div>
 					<% end %>

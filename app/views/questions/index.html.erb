@@ -1,0 +1,37 @@
+<div class="question-index-view">
+	<div class="serch-section">
+		<h4>絞り込み検索</h4>
+		<%= search_form_for @q, url: questions_serch_path, class: "form-inline" do |f| %>
+		  <div class="form">
+		  	<div class=""><%= f.search_field :title_or_body_cont,  autofocus: true, placeholder: "キーワード検索", class:"form-control" %></div>
+		  </div>
+		  <div class="form">
+		  	<div class=""><%= f.search_field :tags_name_eq, value: params.dig(:q, :tags_name_eq),  autofocus: true, placeholder: "タグ検索", class:"form-control" %></div>
+		  </div>
+		  <div class="form">
+		  	<div class="">
+				<%= f.radio_button :status_eq, '', {:checked => true} %>指定なし
+			  	<%= f.radio_button :status_eq, false %>回答受付中
+			  	<%= f.radio_button :status_eq, true %>解決済み
+		  	</div>
+		  </div>
+		  <div class="form">
+		  	<div>
+		  		<%= f.submit "絞り込んで検索", class: "btn btn-primary" %>
+		  	</div>
+		  </div>
+		<% end %>
+		<div>
+			<h4 class="tag-serch-title">今まで使われたタグから検索</h4>
+			<div><%= render 'tag_list', tag_list: @tags %></div>
+		</div>
+	</div>
+
+	<div class="index-dection">
+		<h4>検索結果</h4>
+		<%= render 'question_list', questions: @q_questions %>
+	</div>
+</div>
+
+
+

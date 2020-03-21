@@ -1,6 +1,5 @@
 class AnswerUsersController < ApplicationController
-	before_action :authenticate_answer_user!
-		def index
+	def index
 		
 	end
 
