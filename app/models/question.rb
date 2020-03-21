@@ -8,8 +8,11 @@ class Question < ApplicationRecord
 	has_one :best_answer, dependent: :destroy
 	has_many :tags, through: :question_tags
 
-	# タグを利用するために追加
-	acts_as_taggable # acts_as_taggable_on :tags のエイリアス
+	# タグを利用するためにオプション
+	acts_as_taggable # :tags のエイリアス
+
+	#impressionistを利用するためのオプション
+	is_impressionable
 
 	# バリデーション
 	with_options presence: true do

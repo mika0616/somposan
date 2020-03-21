@@ -40,6 +40,8 @@ class QuestionsController < ApplicationController
 
 	def show
 		@question = Question.find(params[:id])
+		# 閲覧数検索
+		impressionist(@question)
 		@answer = Answer.new
 		@best_answer = BestAnswer.new
 	end
