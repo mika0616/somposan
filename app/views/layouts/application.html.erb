@@ -19,7 +19,15 @@
             <div class="header-logo-box"></div>
           <% end %>
           <!-- 検索ボックス -->
-          <div class="headder-serch-form"><div class="serch-form"></div><div class="serch-icon fas fa-search"></div></div>
+          <div class="serch-form">
+          <%= search_form_for @q, url: questions_serch_path, class: "form-inline" do |f| %>
+            <div class="form-group form-group-lg">
+              <%= f.label :title_or_body_cont, 'Keyword', class: 'control-label sr-only' %>
+              <%= f.search_field :title_or_body_cont,  autofocus: true, placeholder: "キーワード検索", class: 'form-control' %>
+            </div>
+            <%= f.submit class: "btn btn-info" %>
+          <% end %>
+          </div>
           <!-- ログイン済みの場合はマイページリンクが表示され、それ以外はログインサインアップが表示される -->
           <% if question_user_signed_in? %>
           <div class="header-button-group">

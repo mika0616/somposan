@@ -30,11 +30,7 @@ Rails.application.routes.draw do
   # accidents
   resources :accidents, except: [:index] do
     # questions
-    resources :questions, except: [:index] do
-      member do
-        get 'questions/serch' => 'questions#serch'
-      end
-    end
+    resources :questions, except: [:index]
     # solution_reports
     resources :solution_reports, except: [:index, :show] do
     member do
@@ -42,6 +38,11 @@ Rails.application.routes.draw do
     end
   end
   end
+  get 'questions/serch' => 'questions#serch'
+  get 'questions' => 'questions#index'
+
+  # tags
+  get 'tags/:tag', to: 'questions#index', as: :tag
 
   # answers
   resources :answers, only: [:create, :edit, :update]

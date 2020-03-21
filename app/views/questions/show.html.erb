@@ -44,12 +44,13 @@
 			</div>
 		</div>
 		<div class="question-tags">
-			<% @question.tags.each do |tag| %>
-				<span class="label label-info"><%= tag.name %></span>
-			<% end %>
+			<%= render 'tag_list_2', tag_list: @question.tag_list %>
 		</div>
 		<div class="question-body">
 			<p><%= @question.body %></p>
+		</div>
+		<div class="impression text-right">
+			<p><i class="far fa-eye"></i><%=  @question.impressionist_count(:filter=>:session_hash) %>人がこの質問を見ています</p>
 		</div>
 		<div class="accident-link">
 			<div class="accident-link-title text-center">

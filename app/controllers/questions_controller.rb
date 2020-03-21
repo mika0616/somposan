@@ -1,5 +1,13 @@
 class QuestionsController < ApplicationController
 
+	def index
+		# タグ絞り込み
+		if params[:tag_name]
+			@q_questions = Question.tagged_with("#{params[:tag_name]}")
+		end
+		@tags = ActsAsTaggableOn::Tag.all
+	end
+
 	def new
 		@question = Question.new
 	end
@@ -32,6 +40,8 @@ class QuestionsController < ApplicationController
 
 	def show
 		@question = Question.find(params[:id])
+		# 閲覧数検索
+		impressionist(@question)
 		@answer = Answer.new
 		@best_answer = BestAnswer.new
 	end
@@ -41,11 +51,14 @@ class QuestionsController < ApplicationController
 	end
 
 	def serch
-		
+	    # application controllerで生成した@qを利用して検索する
+	    @q_questions = @q.result(distinct: true).reverse_order
+	    @tags = ActsAsTaggableOn::Tag.all
+	    render :index
 	end
 
 	private
 	def question_params
-		params.require(:question).permit(:title, :body, tag_ids:[])
+		params.require(:question).permit(:title, :body, :tag_list, :status)
 	end
 end
