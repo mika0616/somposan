@@ -1,0 +1,23 @@
+<div class="question-index-view">
+	<div class="serch-section">
+		<%= search_form_for @q, url: questions_serch_path, class: "form-inline" do |f| %>
+		  <div class="form-group">
+		    <%= f.label :title_or_body_cont, 'Keyword', class: 'control-label sr-only' %>
+		    <%= f.search_field :title_or_body_cont,  autofocus: true, placeholder: "キーワード検索", class: 'form-control' %>
+		  </div>
+		  <div>
+		    <%= f.label :title_or_body_cont, 'Tag', class: 'control-label sr-only' %>
+		    <%= f.search_field :title_or_body_cont,  autofocus: true, placeholder: "タグ検索", class: 'form-control' %>
+		  </div>
+		  <div>
+		  	<%= f.submit class: "btn btn-info" %>
+		  </div>
+		<% end %>
+	</div>
+	<div class="index-dection">
+		<%= render 'question_list', questions: @q_questions %>
+	</div>
+</div>
+
+
+

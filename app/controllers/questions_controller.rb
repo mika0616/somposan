@@ -1,5 +1,9 @@
 class QuestionsController < ApplicationController
 
+	def index
+		
+	end
+
 	def new
 		@question = Question.new
 	end
@@ -41,7 +45,9 @@ class QuestionsController < ApplicationController
 	end
 
 	def serch
-		
+	    # application controllerで生成した@qを利用して検索する
+	    @q_questions = @q.result(distinct: true).reverse_order
+	    render :index
 	end
 
 	private
