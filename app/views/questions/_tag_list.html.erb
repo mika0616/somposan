@@ -1,0 +1,8 @@
+<!-- タグ一覧からのtag_listにタグのIDが入ってくる。タグ絞り込み検索の場合にparamsにIDが渡されてしまうので、nameを引っ張ってparamsに渡す -->
+<div>
+<% tag_list.each do |tag| %>
+	<%= link_to questions_path(tag_name: tag.name), class:"link-tag" do %>
+  		<span class="tag label label-info"><%= tag %></span>
+  	<% end %>
+<% end %>
+</div>

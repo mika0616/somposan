@@ -44,9 +44,7 @@
 			</div>
 		</div>
 		<div class="question-tags">
-			<% @question.tags.each do |tag| %>
-				<span class="label label-info"><%= tag.name %></span>
-			<% end %>
+			<%= render 'tag_list_2', tag_list: @question.tag_list %>
 		</div>
 		<div class="question-body">
 			<p><%= @question.body %></p>

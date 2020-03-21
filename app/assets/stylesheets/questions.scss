@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// _tag_list
+.tag{
+	line-height: 2.5 !important;
+}
+
 // _question_list
 .question-list{
 	width: 100%;
@@ -31,11 +36,25 @@
 		padding: 30px;
 		margin-bottom: 10px;
 		background-color: white;
+		h4{
+			border-left: 3px solid #32c5f0;
+			padding-left: 10px;
+		}
+		.tag-serch-title{
+			margin-top: 50px;
+		}
+		.form{
+			margin: 10px;
+		}
 	}
 	.index-dection{
 		padding: 30px;
 		margin-bottom: 10px;
 		background-color: white;
+		h4{
+			border-left: 3px solid #32c5f0;
+			padding-left: 10px;
+		}
 	}
 }
 

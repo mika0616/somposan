@@ -13,6 +13,8 @@
 
  //= require rails-ujs
 
+  //= require bootstrap-tagsinput.min
+
   //= require jquery
   //= require jquery_ujs
   //= require bootstrap-sprockets

@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   get 'questions/serch' => 'questions#serch'
   get 'questions' => 'questions#index'
 
+  # tags
+  get 'tags/:tag', to: 'questions#index', as: :tag
+
   # answers
   resources :answers, only: [:create, :edit, :update]
 
