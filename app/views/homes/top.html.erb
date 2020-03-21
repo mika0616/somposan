@@ -1,1 +1,51 @@
-トップ
+<div class="maypage-view row">
+	<div class="index-section">
+		<div class='tabs'>
+		  <div class='tab-buttons'>
+		    <span class='content1'>
+		    	ランキング
+		    </span>
+		    <span class='content2'>
+		    	解答済み
+		    </span>
+		    <span class='content3'>
+		    	回答受付中
+		    </span>
+		    <div id='lamp' class='content1'></div>
+		  </div>
+		<div class="tab-content">
+			<!-- ランキングタブ -->
+			<div class="content1">
+
+			</div>
+			<!-- 解決済みタブ -->
+			<div class="content2">
+				<% @questions.where(status: "解決済み").each do |question| %>
+					<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+					<div class="link-box">
+						<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="question-status">
+							<p class="question-status-true label label-success"><%= question.status %></p>
+							<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
+						</div>
+					</div>
+					<% end %>
+				<% end %>
+			</div>
+			<!-- 回答受付中タブ -->
+			<div class="content3">
+					<% @questions.where(status: "回答受付中").each do |question| %>
+						<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+							<div class="link-box">
+								<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+								<div class="question-status">
+									<p class="question-status-false label label-warning"><%= question.status %></p>
+									<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+			</div>
+		</div>
+	</div>
+</div>
