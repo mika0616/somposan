@@ -11,7 +11,7 @@
 						<p class="question-status-true label label-success"><%= question.status %></p>
 					<% end %>
 					<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
-					<div><%= render 'tag_list_2', tag_list: question.tag_list %></div>
+					<div class="tags"><%= render 'tag_list_2', tag_list: question.tag_list %></div>
 				</div>
 			</div>
 			<% end %>
