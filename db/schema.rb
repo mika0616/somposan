@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_210349) do
+ActiveRecord::Schema.define(version: 2020_03_22_083951) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_210349) do
     t.boolean "status", default: false, null: false
     t.text "title", null: false
     t.text "body", null: false
-    t.integer "access_count", default: 0, null: false
+    t.integer "impressions_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accident_id"

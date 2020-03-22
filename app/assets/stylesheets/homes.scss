@@ -31,6 +31,122 @@
 	width: calc(100% /2);
 }
 
+// top
+
+.main{
+	margin:30px 0;
+	background-color: white;
+	.questions-index-section{
+		.tabs{
+			position: relative;
+			.tab-buttons span{
+				cursor: pointer;
+				display: block;
+				width: 33.3%;
+				float: left;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+			}
+		}
+		.tab-content{
+			width: 100%;
+			display: inline-block;
+			.content1{
+				.rank{
+					padding: 35px 20px;
+				    font-size: 30px;
+				    color: #32c5f0;
+				}
+				i{
+					margin-right: 10px;
+				}
+				.tags{
+					margin: 25px;
+				}
+			}
+			.link-box{
+				display: flex;
+				.situation-img{
+					padding: 15px;
+					font-size: 15px;
+					font-weight: bold;
+				}
+				.question-status{
+					padding: 15px;
+				}
+				.question-title{
+					i{
+						padding-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+.sidebar{
+	margin:30px 20px;
+	.user-rank{
+		background-color: white;
+		h4{
+			border-left: 3px solid #32c5f0;
+			padding-left: 10px;
+			margin-left: 10px;
+		}
+	}
+	.tag-rank{
+		background-color: white;
+		margin-top: 10px;
+		h4{
+			border-left: 3px solid #32c5f0;
+			padding-left: 10px;
+			margin-left: 10px;
+		}
+	}
+}
+
+.link-box:hover{
+	background-color: #dfdfdf;
+}
+
+#lamp{
+	width: 33.3%;
+	height: 5px;
+	border-radius: 5px;
+	background-color: #32c5f0;
+	display: block;
+	position: absolute;
+	top: 40px;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content2{
+	left: 33.3%;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content3{
+	left: 66.6%;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
+#lamp.content1{
+	left: 0;
+	transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+}
+
 // solve
 .solve-view{
 	height: 70vh;

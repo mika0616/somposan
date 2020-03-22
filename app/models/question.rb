@@ -12,7 +12,7 @@ class Question < ApplicationRecord
 	acts_as_taggable # :tags のエイリアス
 
 	#impressionistを利用するためのオプション
-	is_impressionable
+	is_impressionable counter_cache: true, :unique => true
 
 	# バリデーション
 	with_options presence: true do
