@@ -30,7 +30,10 @@ Rails.application.routes.draw do
   # accidents
   resources :accidents, except: [:index] do
     # questions
-    resources :questions, except: [:index]
+    resources :questions, except: [:index] do
+      # favorites
+      resources :favorites, only: [:create, :destroy]
+    end
     # solution_reports
     resources :solution_reports, except: [:index, :show] do
     member do

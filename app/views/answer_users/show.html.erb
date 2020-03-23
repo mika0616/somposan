@@ -19,7 +19,7 @@
 					<% if answer_user_signed_in? && current_answer_user.id == @answer_user.id %>
 					<div class="profile-edit-box">
 						<%= link_to edit_answer_user_path(@answer_user.id), class:"link-tag" do %>
-							<div class="fas fa-cog"></div>
+							<div class="fas fa-user-edit"></div>
 						<% end %>
 					</div>
 					<% end %>
@@ -38,7 +38,7 @@
 				<% end %>
 			</div>
 			<div class="profile-box3">
-				<h4>経歴紹介</h3>
+				<h4>経歴紹介</h4>
 				<% if @answer_user.production.nil? %>
 					<p class="nill">経歴紹介の登録がありません。</p>
 				<% else %>
@@ -54,7 +54,7 @@
 		    	回答した質問
 		    </span>
 		    <span class='content2'>
-		    	<p class="badge"><%= @answer_user.answers.count %></p>
+		    	<p class="badge"><%= @answer_user.best_answers.count %></p>
 		    	ベストアンサーになった質問
 		    </span>
 		    <span class='content3'>
@@ -91,18 +91,18 @@
 			</div>
 			<!-- ベストアンサーにになった質問タブ -->
 			<div class="content2">
-				<% @answer_user.answers.each do |answer| %>
-					<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+				<% @answer_user.best_answers.each do |best_answer| %>
+					<%= link_to accident_question_path(best_answer.question.accident_id, best_answer.question_id), class:"link-tag" do %>
 					<div class="link-box">
-						<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="situation-img"><%= attachment_image_tag best_answer.question.accident, :situation_img, :fill, 100, 100 %></div>
 						<div class="question-status">
-							<% if answer.question.status == "回答受付中" %>
-								<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+							<% if best_answer.question.status == "回答受付中" %>
+								<p class="question-status-false label label-warning"><%= best_answer.question.status %></p>
 							<% else %>
-								<p class="question-status-true label label-success"><%= answer.question.status %></p>
+								<p class="question-status-true label label-success"><%= best_answer.question.status %></p>
 							<% end %>
-							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
-							<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
+							<div class="question-title"><i class="fas fa-question"></i><%= best_answer.question.title %></div>
+							<div><%= render 'questions/tag_list_2', tag_list: best_answer.question.tag_list %></div>
 						</div>
 					</div>
 					<% end %>
@@ -110,18 +110,18 @@
 			</div>
 			<!-- 参考になった質問タブ -->
 			<div class="content3">
-				<% @answer_user.answers.each do |answer| %>
-					<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+				<% @answer_user.favorites.each do |favorite| %>
+					<%= link_to accident_question_path(favorite.question.accident_id, favorite.question_id), class:"link-tag" do %>
 					<div class="link-box">
-						<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
+						<div class="situation-img"><%= attachment_image_tag favorite.question.accident, :situation_img, :fill, 100, 100 %></div>
 						<div class="question-status">
-							<% if answer.question.status == "回答受付中" %>
-								<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+							<% if favorite.question.status == "回答受付中" %>
+								<p class="question-status-false label label-warning"><%= favorite.question.status %></p>
 							<% else %>
-								<p class="question-status-true label label-success"><%= answer.question.status %></p>
+								<p class="question-status-true label label-success"><%= favorite.question.status %></p>
 							<% end %>
-							<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
-							<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
+							<div class="question-title"><i class="fas fa-question"></i><%= favorite.question.title %></div>
+							<div><%= render 'questions/tag_list_2', tag_list: favorite.question.tag_list %></div>
 						</div>
 					</div>
 					<% end %>
@@ -129,4 +129,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

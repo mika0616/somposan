@@ -19,7 +19,9 @@
 <div class="question-view">
 	<div class="question-section row">
 		<div class="question-info">
-			<span class="question-question-user-name"><%= @question.question_user.name %></span>
+			<%= link_to question_user_path(@question.question_user.id) do %>
+				<span class="question-question-user-name"><%= @question.question_user.name %></span>
+			<% end %>
 			<span class="question-question-ctreated-at"><%= @question.created_at.strftime('%Y/%m/%d') %>に投稿</span>
 		</div>
 		<div class="question-headline">
@@ -35,7 +37,7 @@
 				<div class="question-edit-link">
 					<% if question_user_signed_in? %>
 						<% if current_question_user.id == @question.question_user_id %>
-							<%= link_to edit_accident_question_path(@question.id) do %>
+							<%= link_to edit_accident_question_path(@question.id), class:"link-tag" do %>
 								<div class="question-edit-link-icon glyphicon glyphicon-edit" aria-hidden="true"></div>
 							<% end %>
 						<% end %>
@@ -68,6 +70,37 @@
 					<h4><%= @question.accident.title %></h4>
 				</div>
 			</div>
+			<% end %>
+		</div>
+		<div class="favorite-box text-right">
+			<%  if answer_user_signed_in? %>
+				<% if @question.favorites.where(answer_user_id: current_answer_user.id).exists? %>
+					<%= link_to accident_question_favorite_path(@question.accident_id, @question.id), method: :delete, class:"link-tag" do %>
+						<span class="favorite-btn favorited">
+							<i class="fas fa-bookmark"></i>　<%= @question.favorites.count %>人の参考になった
+						</span>
+					<% end %>
+				<% else %>
+					<%= link_to accident_question_favorites_path(@question.accident_id, @question.id), method: :post, class:"link-tag" do %>
+						<span class="favorite-btn not-favorited">
+							<i class="far fa-bookmark"></i>　<%= @question.favorites.count %>人の参考になった
+						</span>
+					<% end %>
+				<% end %>
+			<% elsif question_user_signed_in? %>
+				<% if @question.favorited_by_question_user?(current_question_user) %>
+					<%= link_to accident_question_favorite_path(@question.accident_id, @question.id), method: :delete, class:"link-tag" do %>
+						<span class="favorite-btn favorited">
+							<i class="fas fa-bookmark"></i>　<%= @question.favorites.count %>人の参考になった
+						</span>
+					<% end %>
+				<% else %>
+					<%= link_to accident_question_favorites_path(@question.accident_id, @question.id), method: :post, class:"link-tag" do %>
+						<span class="favorite-btn not-favorited">
+							<i class="far fa-bookmark"></i>　<%= @question.favorites.count %>人の参考になった
+						</span>
+					<% end %>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
@@ -114,7 +147,6 @@
 				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.speciality %></span>
 				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.qualification %></span>
 				<p class="text-right"><%= @question.best_answer.answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
-				<%= link_to "消す", best_answer_path(@question.best_answer.id), :method => :delete %>
 			</div>
 			<div class="other-answers-section">
 				<h3><i class="answer-icon fas fa-comment-alt"></i>その他の回答</h3>
@@ -201,5 +233,9 @@
 			<% end %>
 		<% end %>
 	</div>
-
+	<div class="related-question-section row">
+		<div>
+			<h2>関連する質問</h2>
+		</div>
+	</div>
 </div>

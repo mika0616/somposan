@@ -23,4 +23,9 @@ class Question < ApplicationRecord
 	# ステータス
 	enum status: {"回答受付中": false, "解決済み": true}
 
+	# 独自メソッド
+	def favorited_by_question_user?(user)
+			favorites.where(question_user_id: question_user.id).exists?
+	end
+
 end
