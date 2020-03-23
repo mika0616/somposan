@@ -5,7 +5,8 @@ class AnswerUser < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_one :skill, dependent: :destroy
-  has_many :best_answers, through: :answersS
+  has_many :best_answers, through: :answers
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

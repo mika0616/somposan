@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_083951) do
+ActiveRecord::Schema.define(version: 2020_03_23_102200) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -71,12 +71,13 @@ ActiveRecord::Schema.define(version: 2020_03_22_083951) do
     t.integer "answer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "answer_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
     t.integer "question_id", null: false
-    t.integer "question_user_id", null: false
-    t.integer "answer_user_id", null: false
+    t.integer "question_user_id"
+    t.integer "answer_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
