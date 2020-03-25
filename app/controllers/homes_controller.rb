@@ -2,7 +2,7 @@ class HomesController < ApplicationController
 	def top
 		@questions = Question.all
 		@most_viewed = Question.order('impressions_count DESC')
-		@answer_users = AnswerUser.all.order('score DESC').limit(10)
+		@answer_users = AnswerUser.all.order('total_score DESC').limit(10)
 		@tags = ActsAsTaggableOn::Tag.most_used(15)
 	end
 

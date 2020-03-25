@@ -1,3 +1,8 @@
+<!-- サクセスメッセージ -->
+<% if flash[:notice].present? %>
+	<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
+<% end %>
+<!-- / -->
 <div class="top-view row">
 	<div class="main col-md-8">
 		<div class="questions-index-section row">
@@ -96,7 +101,7 @@
 							<% end %>
 						</td>
 						<td>
-							スコア　<%= answer_user.score %>pt
+							スコア　<%= answer_user.total_score %>pt
 						</td>
 					</tr>
 					<% end %>

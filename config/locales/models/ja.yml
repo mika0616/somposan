@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    attributes:
+      answer:
+        body: 回答内容
+      accident:
+        title: 事故概要
+        body: 事故詳細
+      question:
+        title: 質問概要
+        body: 質問詳細
+      answer:
+        body: 回答内容
+      solution_report:
+        body: 解決内容
+      answer_user:
+        name: アカウント名
+        email: メールアドレス
+        password: パスワード
+        Password_confirmation: パスワード確認
+      question_user:
+        name: アカウント名
+        email: メールアドレス
+        password: パスワード

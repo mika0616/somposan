@@ -1,3 +1,16 @@
+<!-- エラーメッセージ -->
+<% if @question.errors.any? %>
+	<div class="error-message alert alert-danger row" role="alert">
+		<strong>エラー</strong>
+		<ul>
+			<% @question.errors.full_messages.each do |message| %>
+			<li><p><%= message %></p></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<!-- /エラーメッセージ -->
+
 <div class="new-question-view">
 	<div class="question-form-section">
 	<%= form_for(@question, url: accident_questions_path) do |f| %>

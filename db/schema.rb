@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_102200) do
+ActiveRecord::Schema.define(version: 2020_03_24_104112) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer "question_id", null: false
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2020_03_23_102200) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.integer "score", default: 0, null: false
     t.integer "level", default: 0, null: false
     t.text "production"
     t.datetime "created_at", null: false
@@ -54,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_102200) do
     t.integer "career"
     t.integer "speciality"
     t.integer "qualification"
+    t.integer "total_score", default: 0, null: false
     t.index ["email"], name: "index_answer_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_answer_users_on_reset_password_token", unique: true
   end
@@ -137,6 +137,14 @@ ActiveRecord::Schema.define(version: 2020_03_23_102200) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accident_id"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "answer_user_id"
+    t.integer "score", null: false
+    t.integer "event", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|

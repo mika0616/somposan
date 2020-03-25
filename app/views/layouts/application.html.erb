@@ -81,11 +81,13 @@
             </div>
             <div class="header-signup-box col-md-5">
               <div>
-                <%= link_to "損保社員として示談交渉経験者はこちら", homes_before_login_path, class:"btn btn-success" %>
+                <%= link_to "損保社員として示談交渉経験者はこちら", new_answer_user_registration_path, class:"btn btn-success" %>
                 <p>回答ができます</p>
-                <%= link_to "交通事故でお困りの方はこちら", homes_before_signup_path, class:"btn btn-success" %>
+                <%= link_to "交通事故でお困りの方はこちら", new_question_user_registration_path, class:"btn btn-success" %>
                 <p>質問ができます</p>
+                <%= link_to homes_before_login_path do %>
                 <p>アカウントをお持ちの方</p>
+                <% end %>
               </div>
             </div>
           </section>
