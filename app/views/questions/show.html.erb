@@ -1,14 +1,14 @@
 <!-- サクセスメッセージ -->
 <% if flash[:notice].present? %>
-<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
+	<div class="success-message alert alert-success row" role="alert" id ="notice"><%= flash[:notice] %></div>
 <% end %>
 <!-- / -->
 <!-- エラーメッセージ -->
-<% if @answer.errors.any? %>
-	<div class="alert alert-danger row" role="alert">
+<% if @new_answer.errors.any? %>
+	<div class="error-message alert alert-danger row" role="alert">
 		<strong>エラー</strong>
 		<ul>
-			<% @answer.errors.full_messages do |message| %>
+			<% @new_answer.errors.full_messages.each do |message| %>
 			<li><p><%= message %></p></li>
 			<% end %>
 		</ul>
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		<div class="question-tags">
-			<%= render 'tag_list_2', tag_list: @question.tag_list %>
+			<%= render 'questions/tag_list_2', tag_list: @question.tag_list %>
 		</div>
 		<div class="question-body">
 			<p><%= @question.body %></p>
@@ -106,16 +106,16 @@
 	</div>
 	<!-- 回答者がログインしている && 質問ステータスが回答受付中の際は回答フォームを出す -->
 	<% if answer_user_signed_in? && @question.status == "回答受付中" %>
-	<div class="answer-form-section row">
-		<div class="answer-form">
-			<h3>あなたの回答</h3>
-			<%= form_for(@answer) do |f| %>
-				<%= f.hidden_field :question_id, value: @question.id %>
-				<div><%= f.text_area :body, class:"form-control", rows:"10", id:"InputTextarea", placeholder:"回答を入力してください。" %></div>
-				<div class="answer-submit-btn-wrap text-right"><%= f.submit "回答する",class:"btn btn-primary" %></div>
-			<% end %>
+		<div class="answer-form-section row">
+			<div class="answer-form">
+				<h3>あなたの回答</h3>
+				<%= form_for(@answer) do |f| %>
+					<%= f.hidden_field :question_id, value: @question.id %>
+					<div><%= f.text_area :body, class:"form-control", rows:"10", id:"InputTextarea", placeholder:"回答を入力してください。" %></div>
+					<div class="answer-submit-btn-wrap text-right"><%= f.submit "回答する",class:"btn btn-primary" %></div>
+				<% end %>
+			</div>
 		</div>
-	</div>
 	<% end %>
 	<!-- / -->
 	<div class="answers-section row">
@@ -126,109 +126,112 @@
 		</div>
 		<!-- 回答がない場合 -->
 		<% unless @question.answers.present? %>
-		<div>
-			<p>まだ回答がありません。</p>
-		</div>
+			<div>
+				<p>まだ回答がありません。</p>
+			</div>
 
 		<!-- 回答がある場合 -->
 		<% else %>
-			<!-- ベストアンサーがある場合 -->
+			<!-- 回答がある場合 && ベストアンサーがある場合(解決済み) -->
 			<% if @question.best_answer.present? %>
-			<div class="best-answer-section">
-				<h3><i class="best_answer_icon fas fa-crown"></i>ベストアンサー</h3>
-				<p><%= @question.best_answer.answer.body %></p>
-				<span>
-					<%= link_to answer_user_path(@question.best_answer.answer.answer_user_id) do %>
-						<%= @question.best_answer.answer.answer_user.name %>
-					<% end %>
-				</span>
-				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.status %></span>
-				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.career %></span>
-				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.speciality %></span>
-				<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.qualification %></span>
-				<p class="text-right"><%= @question.best_answer.answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
-			</div>
-			<div class="other-answers-section">
-				<h3><i class="answer-icon fas fa-comment-alt"></i>その他の回答</h3>
-				<% @question.answers.where.not(id: @question.best_answer.answer_id).each do |answer| %>
-				<div>
-					<p><%= answer.body %></p>
+				<div class="best-answer-section">
+					<h3><i class="best_answer_icon fas fa-crown"></i>ベストアンサー</h3>
+					<p><%= @question.best_answer.answer.body %></p>
 					<span>
-						<%= link_to answer_user_path(answer.answer_user_id) do %>
-							<%= answer.answer_user.name %>
+						<%= link_to answer_user_path(@question.best_answer.answer.answer_user_id) do %>
+							<%= @question.best_answer.answer.answer_user.name %>
 						<% end %>
 					</span>
-					<span class="skill label label-primary"><%= answer.answer_user.status %></span>
-					<span class="skill label label-primary"><%= answer.answer_user.career %></span>
-					<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
-					<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
-					<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
+					<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.status %></span>
+					<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.career %></span>
+					<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.speciality %></span>
+					<span class="skill label label-primary"><%= @question.best_answer.answer.answer_user.qualification %></span>
+					<p class="text-right"><%= @question.best_answer.answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
 				</div>
-				<% end %>
-			</div>
-			<!-- ベストアンサーがない場合 -->
+				<div class="other-answers-section">
+					<h3><i class="answer-icon fas fa-comment-alt"></i>その他の回答</h3>
+					<table class="table">
+						<tbody>
+							<% @question.answers.where.not(id: @question.best_answer.answer_id).each do |answer| %>
+								<tr>
+									<td>
+										<p><%= answer.body %></p>
+										<span>
+											<%= link_to answer_user_path(answer.answer_user_id) do %>
+												<%= answer.answer_user.name %>
+											<% end %>
+										</span>
+										<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+										<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+										<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+										<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
+										<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
+									</td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			<!-- 回答がある場合 && ベストアンサーがない場合(回答受付中) -->
 			<% else %>
-				<!-- ベストアンサーがない && 投稿ユーザーの場合 -->
+				<!-- 回答がある場合 && ベストアンサーがない && 質問投稿ユーザーの場合 -->
 				<% if question_user_signed_in? && current_question_user.id == @question.question_user_id %>
-				<div>
-
-				<% @question.answers.each do |answer| %>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>
-									<span>
-										<%= link_to answer_user_path(answer.answer_user_id) do %>
-											<%= answer.answer_user.name %>さん
-										<% end %>
-									</span>
-									<span class="skill label label-primary"><%= answer.answer_user.status %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.career %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
-									<p><%= answer.body %></p>
-									<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
-									<div class="text-right">
-										<%= form_for(@best_answer) do |f| %>
-											<%= f.hidden_field :question_id, value: answer.question_id %>
-											<%= f.hidden_field :answer_id, value: answer.id %>
-											<%= f.submit "この回答をベストアンサーにする", class:"btn btn-info" %>
-										<% end %>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				<% end %>
-
-				</div>
-				<!-- ベストアンサーがない && 投稿ユーザ以外の場合 -->
-				<% else %>
-				<div>
-					<% @question.answers.each do |answer| %>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>
-									<span>
-										<%= link_to answer_user_path(answer.answer_user_id) do %>
-											<%= answer.answer_user.name %>さん
-										<% end %>
-									</span>
-									<span class="label label-success">tag</span>
-									<span class="skill label label-primary"><%= answer.answer_user.status %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.career %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
-									<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
-									<p><%= answer.body %></p>
-									<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<div>
+						<table class="table">
+							<tbody>
+								<% @question.answers.each do |answer| %>
+									<tr>
+										<td>
+											<span>
+												<%= link_to answer_user_path(answer.answer_user_id) do %>
+													<%= answer.answer_user.name %>さん
+												<% end %>
+											</span>
+											<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
+											<p><%= answer.body %></p>
+											<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
+											<div class="text-right">
+												<%= form_for(@best_answer) do |f| %>
+													<%= f.hidden_field :question_id, value: answer.question_id %>
+													<%= f.hidden_field :answer_id, value: answer.id %>
+													<%= f.hidden_field :answer_user_id, value: answer.answer_user_id %>
+													<%= f.submit "この回答をベストアンサーにする", class:"btn btn-info" %>
+												<% end %>
+											</div>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
 					</div>
-					<% end %>
-				</div>
+				<!-- 回答がある場合 && ベストアンサーがない && 質問投稿ユーザ以外の場合 -->
+				<% else %>
+					<div>
+						<table class="table">
+							<tbody>
+								<% @question.answers.each do |answer| %>
+									<tr>
+										<td>
+											<span>
+												<%= link_to answer_user_path(answer.answer_user_id) do %>
+													<%= answer.answer_user.name %>さん
+												<% end %>
+											</span>
+											<span class="skill label label-primary"><%= answer.answer_user.status %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.career %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.speciality %></span>
+											<span class="skill label label-primary"><%= answer.answer_user.qualification %></span>
+											<p><%= answer.body %></p>
+											<p class="text-right"><%= answer.created_at.strftime('%Y/%m/%d') %>に投稿</p>
+										</td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
 				<% end %>
 			<% end %>
 		<% end %>
@@ -237,5 +240,34 @@
 		<div>
 			<h2>関連する質問</h2>
 		</div>
+		<table class="table table-hover">
+			<tbody>
+				<% @question.find_related_tags.each do |question| %>
+
+					<tr>
+						<td>
+							<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+								<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %>
+							<% end %>
+						</td>
+						<td>
+							<% if question.status == "回答受付中" %>
+								<p class="question-status-false label label-warning"><%= question.status %></p>
+							<% else %>
+								<p class="question-status-true label label-success"><%= question.status %></p>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+								<i class="fas fa-question"></i><%= question.title %>
+							<% end %>
+							<%= render 'questions/tag_list_2', tag_list: question.tag_list %>
+						</td>
+						<td><i class="far fa-eye"></i><%= question.impressions_count %></td>
+					</tr>
+					<% end %>
+
+			</tbody>
+		</table>
 	</div>
 </div>

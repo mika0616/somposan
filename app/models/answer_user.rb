@@ -6,6 +6,7 @@ class AnswerUser < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_one :skill, dependent: :destroy
   has_many :best_answers, through: :answers
+  has_many :scores, dependent: :destroy
 
 
   devise :database_authenticatable, :registerable,
@@ -24,20 +25,19 @@ class AnswerUser < ApplicationRecord
   enum speciality: {"物損担当" =>0, "ケガあり担当" =>1, "物損/ケガありマルチ担当" =>2}
   enum qualification: {"技術アジャスター3級" =>0, "技術アジャスター2級" =>1}
 
-  # 独自メソッド
-    # ベストアンサーポイントを加算
-    def add_best_answer_score
-      self.score += 50
-    end
 
-    def count_best_answer
-      count = 0
-      if self.answers.best_answers.present?
-        self.answers.each do |best_answer|
-          count += best_answer.count
-        end
-      end
-      count
+  def update_level
+    if self.total_score > 200
+      self.update(level: "レベル２")
+    elsif self.total_score > 400
+      self.update(level: "レベル３")
+    elsif self.total_score > 600
+      self.update(level: "レベル４")
+    elsif self.total_score > 800
+      self.update(level: "レベル５")
+    elsif self.total_score > 1000
+      self.update(level: "レベルMAX")
     end
+  end
 
 end

@@ -12,7 +12,7 @@
 					</div>
 					<div class="name-score-level">
 						<h2><%= @answer_user.name %></h2>
-						<h4>獲得スコア<span><%= @answer_user.score %>pt</span> </h4>
+						<h4>獲得スコア<span><%= @answer_user.total_score %>pt</span> </h4>
 						<h4><%= @answer_user.level %></h4>
 					</div>
 					<!-- 本人の場合 -->
@@ -67,22 +67,33 @@
 			<!-- 回答した質問タブ -->
 			<div class="content1">
 				<% if @answer_user.answers.present? %>
-					<% @answer_user.answers.each do |answer| %>
-						<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
-						<div class="link-box">
-							<div class="situation-img"><%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %></div>
-							<div class="question-status">
-								<% if answer.question.status == "回答受付中" %>
-									<p class="question-status-false label label-warning"><%= answer.question.status %></p>
-								<% else %>
-									<p class="question-status-true label label-success"><%= answer.question.status %></p>
-								<% end %>
-								<div class="question-title"><i class="fas fa-question"></i><%= answer.question.title %></div>
-								<div><%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %></div>
-							</div>
-						</div>
-						<% end %>
-					<% end %>
+					<table class="table table-hover">
+						<tbody>
+							<% @answer_user.answers.each do |answer| %>
+								<tr>
+									<td>
+										<%= link_to accident_path(answer.question_id), class:"link-tag" do %>
+											<%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %>
+										<% end %>
+									</td>
+									<td>
+										<% if answer.question.status == "対応中" %>
+											<p class="question-status-false label label-warning"><%= answer.question.status %></p>
+										<% else %>
+											<p class="question-status-true label label-success"><%= answer.question.status %></p>
+										<% end %>
+									</td>
+									<td>
+										<%= link_to accident_path(answer.question_id), class:"link-tag" do %>
+											<i class="fas fa-question"></i><%= answer.question.title %>
+										<% end %>
+										<%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %>
+									</td>
+									<td><i class="far fa-eye"></i><%= answer.question.impressions_count %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
 				<% else %>
 					<div>
 						<p>まだ回答がありません。</p>
@@ -91,41 +102,63 @@
 			</div>
 			<!-- ベストアンサーにになった質問タブ -->
 			<div class="content2">
-				<% @answer_user.best_answers.each do |best_answer| %>
-					<%= link_to accident_question_path(best_answer.question.accident_id, best_answer.question_id), class:"link-tag" do %>
-					<div class="link-box">
-						<div class="situation-img"><%= attachment_image_tag best_answer.question.accident, :situation_img, :fill, 100, 100 %></div>
-						<div class="question-status">
-							<% if best_answer.question.status == "回答受付中" %>
-								<p class="question-status-false label label-warning"><%= best_answer.question.status %></p>
-							<% else %>
-								<p class="question-status-true label label-success"><%= best_answer.question.status %></p>
-							<% end %>
-							<div class="question-title"><i class="fas fa-question"></i><%= best_answer.question.title %></div>
-							<div><%= render 'questions/tag_list_2', tag_list: best_answer.question.tag_list %></div>
-						</div>
-					</div>
-					<% end %>
-				<% end %>
+				<table class="table table-hover">
+					<tbody>
+						<% @answer_user.best_answers.each do |best_answer| %>
+							<tr>
+								<td>
+									<%= link_to accident_path(best_answer.question_id), class:"link-tag" do %>
+										<%= attachment_image_tag best_answer.question.accident, :situation_img, :fill, 100, 100 %>
+									<% end %>
+								</td>
+								<td>
+									<% if best_answer.question.status == "対応中" %>
+										<p class="question-status-false label label-warning"><%= best_answer.question.status %></p>
+									<% else %>
+										<p class="question-status-true label label-success"><%= best_answer.question.status %></p>
+									<% end %>
+								</td>
+								<td>
+									<%= link_to accident_path(best_answer.question_id), class:"link-tag" do %>
+										<i class="fas fa-question"></i><%= best_answer.question.title %>
+									<% end %>
+									<%= render 'questions/tag_list_2', tag_list: best_answer.question.tag_list %>
+								</td>
+								<td><i class="far fa-eye"></i><%= best_answer.question.impressions_count %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
 			</div>
 			<!-- 参考になった質問タブ -->
 			<div class="content3">
-				<% @answer_user.favorites.each do |favorite| %>
-					<%= link_to accident_question_path(favorite.question.accident_id, favorite.question_id), class:"link-tag" do %>
-					<div class="link-box">
-						<div class="situation-img"><%= attachment_image_tag favorite.question.accident, :situation_img, :fill, 100, 100 %></div>
-						<div class="question-status">
-							<% if favorite.question.status == "回答受付中" %>
-								<p class="question-status-false label label-warning"><%= favorite.question.status %></p>
-							<% else %>
-								<p class="question-status-true label label-success"><%= favorite.question.status %></p>
-							<% end %>
-							<div class="question-title"><i class="fas fa-question"></i><%= favorite.question.title %></div>
-							<div><%= render 'questions/tag_list_2', tag_list: favorite.question.tag_list %></div>
-						</div>
-					</div>
-					<% end %>
-				<% end %>
+				<table class="table table-hover">
+					<tbody>
+						<% @answer_user.favorites.each do |favorite| %>
+							<tr>
+								<td>
+									<%= link_to accident_path(favorite.question_id), class:"link-tag" do %>
+										<%= attachment_image_tag favorite.question.accident, :situation_img, :fill, 100, 100 %>
+									<% end %>
+								</td>
+								<td>
+									<% if favorite.question.status == "対応中" %>
+										<p class="question-status-false label label-warning"><%= favorite.question.status %></p>
+									<% else %>
+										<p class="question-status-true label label-success"><%= favorite.question.status %></p>
+									<% end %>
+								</td>
+								<td>
+									<%= link_to accident_path(favorite.question_id), class:"link-tag" do %>
+										<i class="fas fa-question"></i><%= favorite.question.title %>
+									<% end %>
+									<%= render 'questions/tag_list_2', tag_list: favorite.question.tag_list %>
+								</td>
+								<td><i class="far fa-eye"></i><%= favorite.question.impressions_count %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

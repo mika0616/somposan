@@ -83,6 +83,7 @@ gem 'ransack'
 gem 'impressionist'
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'rails-i18n', '~> 5.1'
 
 # 追加デプロイ用gem
 gem 'dotenv-rails'

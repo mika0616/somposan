@@ -1,9 +1,9 @@
 <!-- エラーメッセージ -->
 <% if @accident.errors.any? %>
-	<div class="alert alert-danger" role="alert">
+	<div class="error-message alert alert-danger row" role="alert">
 		<strong>エラー</strong>
 		<ul>
-			<% @accident.errors.full_messages do |message| %>
+			<% @accident.errors.full_messages.each do |message| %>
 			<li><p><%= message %></p></li>
 			<% end %>
 		</ul>
