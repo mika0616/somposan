@@ -1,12 +1,58 @@
-<div>
-	<section>
+<div class="about-situation">
+	<h2>事故状況図の書き方</h2>
+	<div class="text-center">
+		<div><%= image_tag 'situation-sample.png', class:"", :size => '500x500' %></div>
+	</div>
+	<h4 class="text-center">事故状況図とは</h4>
+	<p>
+		文字通り事故状況を表した図です。事故状況が視覚的にわかるため、より正確に状況に即した回答を得ることができます。<br>
+		回答者が質問に回答するためには事故状況図は必須です。また、事故状況図を書くことによって回答者は答えやすくなるため回答率も上がります。
+	</p>
+	<h4 class="text-center">書く際に押さえるポイント</h4>
+	<div class="point text-center">
 		<div>
-			<h2>事故のお悩み持ち寄り相談</h2>
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>道路状況を細かく書き込む</p>
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>接触前→接触時→接触後を書く</p>
+			<p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>速度などの補足事故を書き込む</p>
 		</div>
-		<div>みんなのそんぽさん</div>
-		<div>みんなのそんぽさん</div>
-	</section>
-	<section>
-		
-	</section>
+	</div>
+	<h4 class="text-center">記号の書き方</h4>
+	<p class="small-title">車</p>
+	<div class="about-car">
+		<div class="text-center">
+			<%= image_tag 'mycar.png', class:"", :size => '250x250' %>
+			<p>自分の車</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag 'others-car.png', class:"", :size => '250x250' %>
+			<p>相手の車</p>
+		</div>
+	</div>
+	<p class="small-title">接触地点</p>
+	<div class="text-center"><%= image_tag 'crush-point.png', class:"", :size => '250x250' %></div>
+	<p class="small-title">道路</p>
+	<div class="about-road">
+		<div class="text-center">
+			<%= image_tag 'nomalroad.png', class:"", :size => '250x250' %>
+			<p>規制線のない道路</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag 'stop-line.png', class:"", :size => '250x250' %>
+			<p>停止線</p>
+		</div>
+	</div>
+	<div class="about-road2">
+		<div class="text-center">
+			<%= image_tag 'dot-road.png', class:"", :size => '250x250' %>
+			<p>センターライン（点線）</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag 'solid-road.png', class:"", :size => '250x250' %>
+			<p>センターライン（白実線）</p>
+		</div>
+		<div class="text-center">
+			<%= image_tag 'orange-solidroad.png', class:"", :size => '250x250' %>
+			<p>センターライン（黄色実線）</p>
+		</div>
+	</div>
 </div>

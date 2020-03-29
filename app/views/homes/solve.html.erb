@@ -1,6 +1,13 @@
 <div class="solve-view row">
 	<div class="solve-message"><p>お疲れ様でした</p> </div>
-	<div class="solve-img"></div>
+	<div class="solve-img-section">
+		<div class="solve-img">
+			<ul>
+				<li><%= image_tag 'solve1.png', class:"swich-img1", :size => '450x450' %></li>
+				<li><%= image_tag 'solve2.png', class:"swich-img2", :size => '450x450' %></li>
+			</ul>
+		</div>
+	</div>
 	<div>
 		<%= link_to root_path do %>
 		<p><<トップページに戻る</p>

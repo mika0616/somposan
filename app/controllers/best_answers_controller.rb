@@ -1,5 +1,5 @@
 class BestAnswersController < ApplicationController
-
+	before_action :authenticate_question_user!
 	def create
 		best_answer = BestAnswer.new(best_answer_params)
 		best_answer.save
@@ -16,18 +16,6 @@ class BestAnswersController < ApplicationController
 			flash[:notice]  = 'ベストアンサーを選択しました！'
 			redirect_to accident_question_path(best_answer.question.accident, best_answer.question)
 		end
-	end
-
-	def show
-		
-	end
-
-# 後で消す！！
-	def destroy
-		best_answer = BestAnswer.find(params[:id])
-		best_answer.destroy
-		best_answer.question.update(status:"回答受付中")
-		redirect_to accident_question_path(best_answer.question.accident, best_answer.question)
 	end
 
 	private

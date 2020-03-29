@@ -1,6 +1,7 @@
 class AnswerUsersController < ApplicationController
+	before_action :authenticate_answer_user!, only: [:edit, :update]
 	def index
-		
+
 	end
 
 	def edit

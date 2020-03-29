@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-
+	before_action :authenticate_question_user!, only: [:new, :create, :edit, :update]
 	def index
 		# タグ絞り込み
 		if params[:tag_name]
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 		else
 			render action: :new
 		end
-	end 
+	end
 
 	def edit
 		@question = Question.find(params[:id])
@@ -44,10 +44,6 @@ class QuestionsController < ApplicationController
 		impressionist(@question)
 		@answer = Answer.new
 		@best_answer = BestAnswer.new
-	end
-
-	def destroy
-		
 	end
 
 	def serch

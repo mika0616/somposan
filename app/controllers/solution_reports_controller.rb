@@ -1,4 +1,5 @@
 class SolutionReportsController < ApplicationController
+	before_action :authenticate_question_user!, only: [:new, :create, :edit, :update]
 	def new
 		@accident = Accident.find(params[:accident_id])
 		@solution_report = SolutionReport.new
@@ -29,11 +30,7 @@ class SolutionReportsController < ApplicationController
 	end
 
 	def solve
-		
-	end
 
-	def destroy
-		
 	end
 
 	private

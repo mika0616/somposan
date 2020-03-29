@@ -13,12 +13,11 @@
 
  //= require rails-ujs
 
-  //= require bootstrap-tagsinput.min
-
   //= require jquery
   //= require jquery_ujs
   //= require bootstrap-sprockets
   //= require_tree .
+
 
 // // 状況図プレビュー
  $(document).on('turbolinks:load', function() {
@@ -44,22 +43,7 @@
 	});
  });
 
- // 解決レポートは入力しないとsubmitボタンが有効にならないようにする
-
-$(function() {
-  if ($("#solution-report").val().length == 0) {
-    $("#solution-report-submit").prop("disabled", true);
-  }
-  $("#solution-report").on("keydown keyup keypress change", function() {
-    if ( $(this).val().length > 0 ) {
-      $("#solution-report-submit").prop("disabled", false);
-    } else {
-      $("#solution-report-submit").prop("disabled", true);
-    }
-  });
-});
-
-// answer-user-mypageタブ切り替え
+// タブ切り替え
 $(function() {
 	$('.tab-content>div').hide();
 	$('.tab-content>div').first().slideDown();
@@ -76,6 +60,28 @@ $(function() {
 	    });
 	  });
 });
+
+// solve画像切り替え
+$(function(){
+    var $setElm = $('.solve-img'),
+    fadeSpeed = 1500,
+    switchDelay = 2000;
+
+    $setElm.each(function(){
+        var targetObj = $(this);
+        var findUl = targetObj.find('ul');
+        var findLi = targetObj.find('li');
+        var findLiFirst = targetObj.find('li:first');
+
+        findLi.css({display:'block',opacity:'0',zIndex:'99'});
+        findLiFirst.css({zIndex:'100'}).stop().animate({opacity:'1'},fadeSpeed);
+
+        setInterval(function(){
+            findUl.find('li:first-child').animate({opacity:'0'},fadeSpeed).next('li').css({zIndex:'100'}).animate({opacity:'1'},fadeSpeed).end();
+        },switchDelay);
+    });
+});
+
 
 
 

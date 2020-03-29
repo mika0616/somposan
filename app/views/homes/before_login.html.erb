@@ -1,16 +1,16 @@
-<div class="befor-login-view">
+<div class="befor-login-signup-view">
 	<p>どちらでログインしますか？</p>
 	<div class="user-select-box">
 		<div class="user-select-button">
 			<%= link_to new_question_user_session_path do %>
+			<div class="question-user-select-img"></div>
 			<p>質問をしたい</p>
-			<div class="user-select-img"></div>
 			<% end %>
 		</div>
 		<div class="user-select-button">
 			<%= link_to new_answer_user_session_path do %>
+			<div class="answer-user-select-img"></div>
 			<p>損保経験者だ</p>
-			<div class="user-select-img"></div>
 			<% end %>
 		</div>
 	</div>

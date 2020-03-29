@@ -3,8 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // before_signup
-.befor-signup-view{
-	margin: 80px 0;
+// befor-login-view
+.befor-login-signup-view{
+	margin: 30px 0;
+	padding: 30px;
+	background-color: white;
 	p{
 		text-align: center;
 		font-size: 30px;
@@ -13,8 +16,12 @@
 	.user-select-box{
 		display: flex;
 		justify-content: center;
+		align-items: flex-end;
 		width: 100%;
 		.user-select-button{
+			display: flex;
+		    align-items: center;
+		    justify-content: center;
 			width: calc(100% /2);
 			height: 100%;
 			p{
@@ -22,7 +29,20 @@
 				font-size: 20px;
 				font-weight: bold;
 			}
-			.user-select-img{}
+			.question-user-select-img{
+				height: 15vw;
+				width: 15vw;
+				background-image: url(question_user.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+			.answer-user-select-img{
+				height: 20vw;
+				width: 20vw;
+				background-image: url(levelmax.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
 		}
 	}
 }
@@ -86,6 +106,12 @@
 }
 .sidebar{
 	margin:30px 20px;
+	.new-question-btn-wrap{
+		margin-bottom: 10px;
+	}
+	.serch-btn-wrap{
+		margin-bottom: 10px;
+	}
 	.user-rank{
 		background-color: white;
 		h4{
@@ -158,5 +184,138 @@
 		font-size: 25px;
 		font-weight: bold;
 	}
-	.solve-img{}
+	.solve-img-section{
+		display: flex;
+		justify-content: center;
+		.solve-img{
+			width: 450px;
+			height: 450px;
+			overflow: hidden;
+			ul{
+				width: 450px;
+				height: 450px;
+				position: relative;
+				overflow: hidden;
+				li{
+					display: none;
+					width: 450px;
+					height: 450px;
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+}
+
+// about
+.about-headline-section{
+	border-radius: 90px;
+	background-color: #32c5f0;
+	color: white;
+	padding: 50px;
+    margin-top: 30px;
+	.about-logo-box{
+		height: 6vw;
+		width: 40vw;
+		margin: 0 auto;
+		background-image: url(logo-white.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	h1{
+		font-size: 20px;
+	}
+}
+.about-all{
+	display: flex;
+	margin: 30px 0;
+	.about-main{
+		padding: 0 30px 80px 30px;
+		margin-right: 20px;
+		background-color: white;
+		h2{
+			margin: 80px 0;
+			color: #32c5f0;
+			font-weight: bold;
+		}
+		h4{
+			font-weight: bold;
+		}
+		p{
+			margin-bottom: 50px;
+		}
+		.about-resistration-guide{
+			margin-top: 30px;
+		}
+	}
+	.about-side{
+		width: 40vw;
+		padding: 10px;
+		background-color: white;
+		position: relative;
+		p{
+			margin-bottom: 20px;
+			font-weight: bold;
+		}
+		.headline{
+			color: #32c5f0;
+		}
+	}
+}
+
+#sampleFix {
+	position: sticky;
+    top: 0;
+    will-change: transform;
+}
+
+// about-situation
+.about-situation{
+	margin: 30px 0;
+	padding: 30px 30px 80px 30px;
+	background-color: white;
+	h2{
+		margin-bottom: 30px;
+		border-bottom: solid 3px #efefef;
+	}
+	h4{
+		margin: 80px 0;
+		color: #32c5f0;
+		font-weight: bold;
+		font-size: 30px;
+	}
+	p{
+		margin: 0 20px;
+		font-size: 20px;
+	}
+	.point{
+		span{
+			margin-right: 20px;
+			color: #32c5f0;
+		}
+		p{
+			font-size: 20px;
+		}
+	}
+	.small-title{
+		margin: 30px;
+		padding-left: 30px;
+		border-left: solid 3px #32c5f0;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.about-car{
+		display: flex;
+		justify-content: center;
+	}
+	.about-road{
+		display: flex;
+		justify-content: center;
+	}
+	.about-road2{
+		display: flex;
+		justify-content: center;
+	}
 }

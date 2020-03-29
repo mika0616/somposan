@@ -1,4 +1,5 @@
 class QuestionUsersController < ApplicationController
+	before_action :authenticate_question_user!, only: [:edit, :update]
 	def edit
 		@question_user = QuestionUser.find(params[:id])
 	end

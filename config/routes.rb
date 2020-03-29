@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   resources :scores, only: [:create]
 
   # question_users
-  resources :question_users,except: [:index, :new, :create, :destroy]
+  resources :question_users, except: [:index, :new, :create, :destroy]
 
   # best_answers
   resources :best_answers, only: [:create, :destroy] do

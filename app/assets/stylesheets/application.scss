@@ -36,6 +36,9 @@
 	cursor: pointer;
 	color: black;
 }
+.header-link{
+	color: white;
+}
 
 // エラーメッセージ
 .error-message{
@@ -106,22 +109,38 @@
 .header-about-section{
 	width: 100vw;
 	height: 70vh;
-	background-color: #32c5f0;
-	.header-about-box{
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		height: 100%;
-		margin: auto 0;
-		background-color: rgba(0, 0, 0, 0.5);
-		color: white;
-	}
-	.header-signup-box{
-		display: flex;
-		align-items: center;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
-		color: white;
+	background-image: url(header5.jpg);
+	background-size: contain;
+	.header-about-box-wrap{
+		height: 80%;
+		margin: 60px;
+		.header-about-box{
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			height: 100%;
+			margin: auto 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			color: white;
+			.header-about-logo-box{
+				height: 40px;
+				width: 40vw;
+	    		margin: 25px;
+				background-image: url(logo-white2.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+		}
+		.header-signup-box{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			color: white;
+			.about-section-serch-form{
+				margin-bottom: 10px;
+			}
+		}
 	}
 }
 
@@ -136,7 +155,9 @@
 }
 .resistration-view{
 	display: flex;
-	margin: 80px 0;
+	margin: 30px 0;
+	padding: 30px;
+	background-color: white;
 	.registration-guide-section{
 		p{
 			font-weight: bold;
@@ -161,7 +182,9 @@
 
 // ログイン
 .user-session-view{
-	margin: 80px 0;
+	margin: 30px 0;
+	padding:0 30px 30px 30px;
+	background-color: white;
 	.session-guide-section{
 		p{
 			text-align: center;
@@ -190,6 +213,17 @@ footer{
 		height: 200px;
 		padding: 30px 0;
 		color: white;
+		.footer-logo-box{
+			height: 30%;
+			width: 40vw;
+			margin-bottom: 25px;
+			background-image: url(logo-default.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+		.footer-link-tag{
+			color: white;
+		}
 	}
 }
 

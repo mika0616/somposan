@@ -1,6 +1,6 @@
 <!-- エラーメッセージ -->
 <% if @question_user.errors.any? %>
-	<div class="alert alert-danger row" role="alert">
+	<div class="error-message alert alert-danger row" role="alert">
 		<strong>エラー</strong>
 		<ul>
 			<% @question_user.errors.full_messages do |message| %>
@@ -11,7 +11,7 @@
 <% end %>
 <!-- /エラーメッセージ -->
 <div class="edit-profile-view row">
-	<%= form_for(@question_user) do |f| %>
+	<%= form_for(@question_user, url: question_user_path(@question_user.id), method: :patch) do |f| %>
 	<div class="form-box row">
 		<div class="col-xs-4"><h4>アカウント名</h4></div>
 		<div class="col-xs-8"><%= f.text_field :name, class:"form-control" %></div>

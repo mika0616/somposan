@@ -7,6 +7,7 @@
 <div class="accident-view">
 	<div class="accident-section row">
 		<div class="accident-info-box">
+			<span><%= image_tag 'question_user.png', class:"img-circle", :size => '80x80' %></span>
 			<span class="question-user-name">
 				<%= link_to question_user_path(@accident.question_user.id) do %>
 				<%= @accident.question_user.name %>
@@ -39,7 +40,7 @@
 				<p><%= @accident.body %></p>
 			</div>
 			<div class="accident-body-item img">
-				<%= attachment_image_tag @accident, :situation_img, :fill, 400, 400, fallback: "no_image.jpg", :size => '400x400' %>
+				<%= attachment_image_tag @accident, :situation_img, :fill, 400, 400, fallback: "no-img.jpg", :size => '400x400' %>
 			</div>
 		</div>
 		<div class="accident-damage-box">

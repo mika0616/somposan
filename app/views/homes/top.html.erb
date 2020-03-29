@@ -22,15 +22,15 @@
 			<div class="tab-content">
 				<!-- ランキングタブ -->
 				<div class="content1">
-					<table class="table table-hover">
-						<tbody>
+					<table class="jscroll top-question-list table table-hover">
+						<tbody class="">
 							<% @most_viewed.each.with_index(1) do |question, rank| %>
-							<tr>
+							<tr class="">
 								<div>
 									<td class="rank"><%= "#{rank}" %></td>
 									<td>
 										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
-											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %>
+											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 										<% end %>
 									</td>
 									<td>
@@ -58,37 +58,71 @@
 				</div>
 				<!-- 解決済みタブ -->
 				<div class="content2">
-					<% @questions.where(status: "解決済み").each do |question| %>
-						<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
-						<div class="link-box">
-							<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
-							<div class="question-status">
-								<p class="question-status-true label label-success"><%= question.status %></p>
-								<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
-							</div>
-						</div>
-						<% end %>
-					<% end %>
+					<table class="table table-hover">
+						<tbody>
+							<% @questions.where(status: "解決済み").each do |question| %>
+								<tr>
+									<td>
+										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
+										<% end %>
+									</td>
+									<td><p class="question-status-true label label-success"><%= question.status %></p></td>
+									<td>
+										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+											<i class="fas fa-question"></i><%= question.title %>
+										<% end %>
+										<div class="tags">
+											<%= render 'questions/tag_list_2', tag_list: question.tag_list %>
+										</div>
+									</td>
+									<td><i class="far fa-eye"></i><%= question.impressions_count %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
 				</div>
 				<!-- 回答受付中タブ -->
 				<div class="content3">
-						<% @questions.where(status: "回答受付中").each do |question| %>
-							<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
-								<div class="link-box">
-									<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
-									<div class="question-status">
-										<p class="question-status-false label label-warning"><%= question.status %></p>
-										<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
-									</div>
-								</div>
+					<table class="table table-hover">
+						<tbody>
+							<% @questions.where(status: "回答受付中").each do |question| %>
+								<tr>
+									<td>
+										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
+										<% end %>
+									</td>
+									<td><p class="question-status-true label label-success"><%= question.status %></p></td>
+									<td>
+										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
+											<i class="fas fa-question"></i><%= question.title %>
+										<% end %>
+										<div class="tags">
+											<%= render 'questions/tag_list_2', tag_list: question.tag_list %>
+										</div>
+									</td>
+									<td><i class="far fa-eye"></i><%= question.impressions_count %></td>
+								</tr>
 							<% end %>
-						<% end %>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 	<div class="sidebar col-md-3">
+		<div class="new-question-btn-wrap text-center row">
+			<%= link_to new_accident_path, class:"form-control btn btn-success" do %>
+				<i class="fas fa-plus"></i> 新しく事故を登録して質問する
+			<% end %>
+		</div>
+		<div class="serch-btn-wrap row">
+			<%= link_to questions_path, class:"form-control btn btn-info" do %>
+				<i class="fas fa-search"></i> 条件を絞り込んで質問を検索する
+			<% end %>
+		</div>
 		<div class="user-rank row">
 			<h4>回答者ランキング</h4>
 			<table class="table table-hover">
