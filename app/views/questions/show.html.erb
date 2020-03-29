@@ -4,11 +4,11 @@
 <% end %>
 <!-- / -->
 <!-- エラーメッセージ -->
-<% if @new_answer.errors.any? %>
+<% if @answer.errors.any? %>
 	<div class="error-message alert alert-danger row" role="alert">
 		<strong>エラー</strong>
 		<ul>
-			<% @new_answer.errors.full_messages.each do |message| %>
+			<% @answer.errors.full_messages.each do |message| %>
 			<li><p><%= message %></p></li>
 			<% end %>
 		</ul>
@@ -19,6 +19,7 @@
 <div class="question-view">
 	<div class="question-section row">
 		<div class="question-info">
+			<span><%= image_tag 'question_user.png', class:"img-circle", :size => '80x80' %></span>
 			<%= link_to question_user_path(@question.question_user.id) do %>
 				<span class="question-question-user-name"><%= @question.question_user.name %></span>
 			<% end %>
@@ -60,7 +61,9 @@
 			</div>
 			<%= link_to accident_path(@question.accident.id), class:"link-tag" do %>
 			<div class="accident-link-box">
-				<div class="accident-img"><%= attachment_image_tag @question.accident, :situation_img, :fill, 100, 100 %></div>
+				<div class="accident-img">
+					<%= attachment_image_tag @question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
+				</div>
 				<div class="accident-title">
 					<% if @question.accident.status == "対応中" %>
 						<span class="accident-status-false label label-warning"><%= @question.accident.status %></span>
@@ -138,6 +141,21 @@
 					<h3><i class="best_answer_icon fas fa-crown"></i>ベストアンサー</h3>
 					<p><%= @question.best_answer.answer.body %></p>
 					<span>
+						<% if @question.best_answer.answer.answer_user.level == "レベル１" %>
+							<%= image_tag 'level1.png', class:"img-circle", :size => '80x80' %>
+						<% elsif @question.best_answer.answer.answer_user.level == "レベル２" %>
+							<%= image_tag 'level2.png', class:"img-circle", :size => '80x80' %>
+						<% elsif @question.best_answer.answer.answer_user.level == "レベル３" %>
+							<%= image_tag 'level3.png', class:"img-circle", :size => '80x80' %>
+						<% elsif @question.best_answer.answer.answer_user.level == "レベル４" %>
+							<%= image_tag 'level4.png', class:"img-circle", :size => '80x80' %>
+						<% elsif @question.best_answer.answer.answer_user.level == "レベル５" %>
+							<%= image_tag 'level5.png', class:"img-circle", :size => '80x80' %>
+						<% elsif @question.best_answer.answer.answer_user.level == "レベルMAX" %>
+							<%= image_tag 'levelmax.png', class:"img-circle", :size => '80x80' %>
+						<% end %>
+					</span>
+					<span>
 						<%= link_to answer_user_path(@question.best_answer.answer.answer_user_id) do %>
 							<%= @question.best_answer.answer.answer_user.name %>
 						<% end %>
@@ -156,6 +174,21 @@
 								<tr>
 									<td>
 										<p><%= answer.body %></p>
+										<span>
+											<% if answer.answer_user.level == "レベル１" %>
+												<%= image_tag 'level1.png', class:"img-circle", :size => '80x80' %>
+											<% elsif answer.answer_user.level == "レベル２" %>
+												<%= image_tag 'level2.png', class:"img-circle", :size => '80x80' %>
+											<% elsif answer.answer_user.level == "レベル３" %>
+												<%= image_tag 'level3.png', class:"img-circle", :size => '80x80' %>
+											<% elsif answer.answer_user.level == "レベル４" %>
+												<%= image_tag 'level4.png', class:"img-circle", :size => '80x80' %>
+											<% elsif answer.answer_user.level == "レベル５" %>
+												<%= image_tag 'level5.png', class:"img-circle", :size => '80x80' %>
+											<% elsif answer.answer_user.level == "レベルMAX" %>
+												<%= image_tag 'levelmax.png', class:"img-circle", :size => '80x80' %>
+											<% end %>
+										</span>
 										<span>
 											<%= link_to answer_user_path(answer.answer_user_id) do %>
 												<%= answer.answer_user.name %>
@@ -182,6 +215,21 @@
 								<% @question.answers.each do |answer| %>
 									<tr>
 										<td>
+											<span>
+												<% if answer.answer_user.level == "レベル１" %>
+													<%= image_tag 'level1.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル２" %>
+													<%= image_tag 'level2.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル３" %>
+													<%= image_tag 'level3.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル４" %>
+													<%= image_tag 'level4.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル５" %>
+													<%= image_tag 'level5.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベルMAX" %>
+													<%= image_tag 'levelmax.png', class:"img-circle", :size => '80x80' %>
+												<% end %>
+											</span>
 											<span>
 												<%= link_to answer_user_path(answer.answer_user_id) do %>
 													<%= answer.answer_user.name %>さん
@@ -215,6 +263,21 @@
 								<% @question.answers.each do |answer| %>
 									<tr>
 										<td>
+											<span>
+												<% if answer.answer_user.level == "レベル１" %>
+													<%= image_tag 'level1.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル２" %>
+													<%= image_tag 'level2.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル３" %>
+													<%= image_tag 'level3.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル４" %>
+													<%= image_tag 'level4.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベル５" %>
+													<%= image_tag 'level5.png', class:"img-circle", :size => '80x80' %>
+												<% elsif answer.answer_user.level == "レベルMAX" %>
+													<%= image_tag 'levelmax.png', class:"img-circle", :size => '80x80' %>
+												<% end %>
+											</span>
 											<span>
 												<%= link_to answer_user_path(answer.answer_user_id) do %>
 													<%= answer.answer_user.name %>さん

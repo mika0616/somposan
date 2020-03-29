@@ -8,7 +8,7 @@
 	<div class="profile-section">
 			<div class="profile-box1">
 					<div class="img">
-						<div><%= image_tag 'no-img.jpg', class:"img-circle", :size => '250x250' %></div>
+						<div><%= image_tag 'question_user.png', class:"img-circle", :size => '250x250' %></div>
 					</div>
 					<div class="name-score-level">
 						<h2><%= @question_user.name %></h2>
@@ -22,6 +22,11 @@
 					</div>
 					<% end %>
 			</div>
+	</div>
+	<div class="new-question-section text-center">
+		<%= link_to new_accident_path, class:"btn btn-success" do %>
+			<i class="fas fa-plus"></i>新しく事故を登録して質問する
+		<% end %>
 	</div>
 	<div class="index-section">
 		<div class='tabs'>

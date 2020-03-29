@@ -1,4 +1,5 @@
 class AccidentsController < ApplicationController
+	before_action :authenticate_question_user!, only: [:new, :create, :edit, :update]
 	def new
 		@accident = Accident.new
 	end

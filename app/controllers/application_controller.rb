@@ -20,13 +20,14 @@ def set_search_question
 end
 
 protected
+
 	def configure_permitted_parameters
 		if resource_class == QuestionUser
-    		devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    		devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-    	elsif resource_class == AnswerUser
-    		devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    		devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-    	end
-  	end
+  		devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  		devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    elsif resource_class == AnswerUser
+  		devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  		devise_parameter_sanitizer.permit(:account_update, keys: [:name, :production, :status, :career, :speciality, :qualification])
+    end
+  end
 end

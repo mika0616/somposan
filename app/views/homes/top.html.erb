@@ -30,7 +30,7 @@
 									<td class="rank"><%= "#{rank}" %></td>
 									<td>
 										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
-											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %>
+											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 										<% end %>
 									</td>
 									<td>
@@ -61,7 +61,7 @@
 					<% @questions.where(status: "解決済み").each do |question| %>
 						<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
 						<div class="link-box">
-							<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+							<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %></div>
 							<div class="question-status">
 								<p class="question-status-true label label-success"><%= question.status %></p>
 								<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
@@ -75,7 +75,7 @@
 						<% @questions.where(status: "回答受付中").each do |question| %>
 							<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
 								<div class="link-box">
-									<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100 %></div>
+									<div class="situation-img"><%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %></div>
 									<div class="question-status">
 										<p class="question-status-false label label-warning"><%= question.status %></p>
 										<div class="question-title"><i class="fas fa-question"></i><%= question.title %></div>
@@ -89,6 +89,16 @@
 	</div>
 </div>
 	<div class="sidebar col-md-3">
+		<div class="new-question-btn-wrap text-center row">
+			<%= link_to new_accident_path, class:"form-control btn btn-success" do %>
+				<i class="fas fa-plus"></i> 新しく事故を登録して質問する
+			<% end %>
+		</div>
+		<div class="serch-btn-wrap row">
+			<%= link_to questions_path, class:"form-control btn btn-info" do %>
+				<i class="fas fa-search"></i> 条件を絞り込んで質問を検索する
+			<% end %>
+		</div>
 		<div class="user-rank row">
 			<h4>回答者ランキング</h4>
 			<table class="table table-hover">

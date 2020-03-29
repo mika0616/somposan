@@ -1,10 +1,12 @@
 class QuestionUsersController < ApplicationController
+	before_action :authenticate_question_user!, only: [:edit, :update]
 	def edit
 		@question_user = QuestionUser.find(params[:id])
 	end
 
 	def update
 		@question_user = QuestionUser.find(params[:id])
+		binding.pry
 		if @question_user.update(question_user_params)
 			flash[:notice]  = 'プロフィールを編集しました！'
 			redirect_to question_user_path(@question_user.id)

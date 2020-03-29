@@ -8,7 +8,19 @@
 	<div class="profile-section">
 			<div class="profile-box1">
 					<div class="img">
-						<div><%= image_tag 'no-img.jpg', class:"img-circle", :size => '250x250' %></div>
+						<% if @answer_user.level == "レベル１" %>
+							<%= image_tag 'level1.png', class:"img-circle", :size => '250x250' %>
+						<% elsif @answer_user.level == "レベル２" %>
+							<%= image_tag 'level2.png', class:"img-circle", :size => '250x250' %>
+						<% elsif @answer_user.level == "レベル３" %>
+							<%= image_tag 'level3.png', class:"img-circle", :size => '250x250' %>
+						<% elsif @answer_user.level == "レベル４" %>
+							<%= image_tag 'level4.png', class:"img-circle", :size => '250x250' %>
+						<% elsif @answer_user.level == "レベル５" %>
+							<%= image_tag 'level5.png', class:"img-circle", :size => '250x250' %>
+						<% elsif @answer_user.level == "レベルMAX" %>
+							<%= image_tag 'levelmax.png', class:"img-circle", :size => '250x250' %>
+						<% end %>
 					</div>
 					<div class="name-score-level">
 						<h2><%= @answer_user.name %></h2>
@@ -72,8 +84,8 @@
 							<% @answer_user.answers.each do |answer| %>
 								<tr>
 									<td>
-										<%= link_to accident_path(answer.question_id), class:"link-tag" do %>
-											<%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100 %>
+										<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
+											<%= attachment_image_tag answer.question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 										<% end %>
 									</td>
 									<td>
@@ -84,7 +96,7 @@
 										<% end %>
 									</td>
 									<td>
-										<%= link_to accident_path(answer.question_id), class:"link-tag" do %>
+										<%= link_to accident_question_path(answer.question.accident_id, answer.question_id), class:"link-tag" do %>
 											<i class="fas fa-question"></i><%= answer.question.title %>
 										<% end %>
 										<%= render 'questions/tag_list_2', tag_list: answer.question.tag_list %>
@@ -107,8 +119,8 @@
 						<% @answer_user.best_answers.each do |best_answer| %>
 							<tr>
 								<td>
-									<%= link_to accident_path(best_answer.question_id), class:"link-tag" do %>
-										<%= attachment_image_tag best_answer.question.accident, :situation_img, :fill, 100, 100 %>
+									<%= link_to accident_question_path(best_answer.question.accident_id, best_answer.question_id), class:"link-tag" do %>
+										<%= attachment_image_tag best_answer.question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 									<% end %>
 								</td>
 								<td>
@@ -119,7 +131,7 @@
 									<% end %>
 								</td>
 								<td>
-									<%= link_to accident_path(best_answer.question_id), class:"link-tag" do %>
+									<%= link_to accident_question_path(best_answer.question.accident_id, best_answer.question_id), class:"link-tag" do %>
 										<i class="fas fa-question"></i><%= best_answer.question.title %>
 									<% end %>
 									<%= render 'questions/tag_list_2', tag_list: best_answer.question.tag_list %>
@@ -137,8 +149,8 @@
 						<% @answer_user.favorites.each do |favorite| %>
 							<tr>
 								<td>
-									<%= link_to accident_path(favorite.question_id), class:"link-tag" do %>
-										<%= attachment_image_tag favorite.question.accident, :situation_img, :fill, 100, 100 %>
+									<%= link_to accident_question_path(favorite.question.accident_id, favorite.question_id), class:"link-tag" do %>
+										<%= attachment_image_tag favorite.question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 									<% end %>
 								</td>
 								<td>
@@ -149,7 +161,7 @@
 									<% end %>
 								</td>
 								<td>
-									<%= link_to accident_path(favorite.question_id), class:"link-tag" do %>
+									<%= link_to accident_question_path(favorite.question.accident_id, favorite.question_id), class:"link-tag" do %>
 										<i class="fas fa-question"></i><%= favorite.question.title %>
 									<% end %>
 									<%= render 'questions/tag_list_2', tag_list: favorite.question.tag_list %>
