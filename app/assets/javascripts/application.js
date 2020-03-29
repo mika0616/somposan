@@ -13,12 +13,11 @@
 
  //= require rails-ujs
 
-  //= require bootstrap-tagsinput.min
-
   //= require jquery
   //= require jquery_ujs
   //= require bootstrap-sprockets
   //= require_tree .
+
 
 // // 状況図プレビュー
  $(document).on('turbolinks:load', function() {
@@ -82,6 +81,7 @@ $(function(){
         },switchDelay);
     });
 });
+
 
 
 

@@ -6,7 +6,6 @@ class QuestionUsersController < ApplicationController
 
 	def update
 		@question_user = QuestionUser.find(params[:id])
-		binding.pry
 		if @question_user.update(question_user_params)
 			flash[:notice]  = 'プロフィールを編集しました！'
 			redirect_to question_user_path(@question_user.id)
