@@ -70,7 +70,7 @@
 	.header-logo-box{
 		height: 100%;
 		width: 40vw;
-		background-image: url(logo-white.png);
+		background-image: image-url("logo-white.png");
 		background-size: contain;
 		background-repeat: no-repeat;
 	}
@@ -109,7 +109,7 @@
 .header-about-section{
 	width: 100vw;
 	height: 70vh;
-	background-image: url(header5.jpg);
+	background-image: image-url("header5.jpg");
 	background-size: contain;
 	.header-about-box-wrap{
 		height: 80%;
@@ -126,7 +126,7 @@
 				height: 40px;
 				width: 40vw;
 	    		margin: 25px;
-				background-image: url(logo-white2.png);
+				background-image: image-url("logo-white2.png");
 				background-size: contain;
 				background-repeat: no-repeat;
 			}
@@ -217,7 +217,7 @@ footer{
 			height: 30%;
 			width: 40vw;
 			margin-bottom: 25px;
-			background-image: url(logo-default.png);
+			background-image: image-url("logo-default.png");
 			background-size: contain;
 			background-repeat: no-repeat;
 		}

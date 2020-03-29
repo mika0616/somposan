@@ -32,14 +32,14 @@
 			.question-user-select-img{
 				height: 15vw;
 				width: 15vw;
-				background-image: url(question_user.png);
+				background-image: image-url("question_user.png");
 				background-size: contain;
 				background-repeat: no-repeat;
 			}
 			.answer-user-select-img{
 				height: 20vw;
 				width: 20vw;
-				background-image: url(levelmax.png);
+				background-image: image-url("levelmax.png");
 				background-size: contain;
 				background-repeat: no-repeat;
 			}
@@ -220,7 +220,7 @@
 		height: 6vw;
 		width: 40vw;
 		margin: 0 auto;
-		background-image: url(logo-white.png);
+		background-image: image-url("logo-white.png");
 		background-size: contain;
 		background-repeat: no-repeat;
 	}
