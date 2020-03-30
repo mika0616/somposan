@@ -93,7 +93,7 @@
 											<%= attachment_image_tag question.accident, :situation_img, :fill, 100, 100, fallback: "no-img.jpg", :size => '100x100' %>
 										<% end %>
 									</td>
-									<td><p class="question-status-true label label-success"><%= question.status %></p></td>
+									<td><p class="question-status-true label label-warning"><%= question.status %></p></td>
 									<td>
 										<%= link_to accident_question_path(question.accident_id, question.id), class:"link-tag" do %>
 											<i class="fas fa-question"></i><%= question.title %>
@@ -113,11 +113,13 @@
 	</div>
 </div>
 	<div class="sidebar col-md-3">
-		<div class="new-question-btn-wrap text-center row">
-			<%= link_to new_accident_path, class:"form-control btn btn-success" do %>
-				<i class="fas fa-plus"></i> 新しく事故を登録して質問する
-			<% end %>
-		</div>
+		<% if question_user_signed_in? %>
+			<div class="new-question-btn-wrap text-center row">
+				<%= link_to new_accident_path, class:"form-control btn btn-success" do %>
+					<i class="fas fa-plus"></i> 新しく事故を登録して質問する
+				<% end %>
+			</div>
+		<% end %>
 		<div class="serch-btn-wrap row">
 			<%= link_to questions_path, class:"form-control btn btn-info" do %>
 				<i class="fas fa-search"></i> 条件を絞り込んで質問を検索する

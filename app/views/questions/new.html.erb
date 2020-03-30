@@ -27,7 +27,7 @@
 			<div class="tag-guide">
 				<p>質問内容に関係するタグを選択してください（カンマ「,」で区切って複数入力可）</p>
 			</div>
-			<div class="form-group form-group-lg">
+			<div class="form-group form-group-lg tag-form">
 				<%= text_field_tag 'question[tag_list]', @question.tag_list.join(','), "data-role" => "tagsinput", class:"form-control" %>
 			</div>
 		</div>
