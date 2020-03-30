@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 	def create
 		@answer = current_answer_user.answers.new(answer_params)
 		if @answer.save
-			flash[:notice]
+			flash[:notice] = '回答を投稿しました！'
 			redirect_to accident_question_path(@answer.question, @answer.question)
 			# 回答者に解答スコア10ptを加算
 			current_answer_user.scores.create(answer_user_id: current_answer_user.id, score: 10, event: "回答投稿")
